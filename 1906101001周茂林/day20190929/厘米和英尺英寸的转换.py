@@ -1,0 +1,5 @@
+CM = input()
+cm = int(CM)
+foot =int(cm/100.0/0.3048)
+inch =int((cm/100.0/0.3048-foot)*12)
+print(foot,inch)
