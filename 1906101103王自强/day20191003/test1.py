@@ -4,4 +4,4 @@ while True:
         y=x
     else:
         y=1/x
-    print('y=%f'%y) 
+    print('y=%f'%y)
