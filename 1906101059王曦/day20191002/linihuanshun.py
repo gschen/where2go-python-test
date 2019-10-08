@@ -1,0 +1,5 @@
+s = input()
+c = int(s)
+foot =int(c/100.0/0.3048)
+inch =int((c/100.0/0.3048-foot)*12)
+print(foot,inch)
