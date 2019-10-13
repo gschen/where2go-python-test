@@ -5,16 +5,23 @@ from tensorflow import keras
 from tensorflow.keras import datasets
 #x:[60k,28,28]
 #y:[60k}
-(x,y),_=datasets.mnist.load_data()
+(x,y),(x_test,y_test)=datasets.mnist.load_data()
 #转换为tensor
 x = tf.convert_to_tensor(x,dtype=tf.float32)/255
 #x范围由0-255变为0-1
 y = tf.convert_to_tensor(y,dtype=tf.int32)
+x_test=tf.convert_to_tensor(x_test,dtype=tf.float32)/255
+y_test=tf.convert_to_tensor(y_test,dtype=tf.int32)
 '''
 print(x.shape,y.shape,x.dtype,y.dtype)
 print(tf.reduce_min(x),tf.reduce_max(x))
 print(tf.reduce_min(y),tf.reduce_max(y))
 '''
+test_db=tf.data.Dataset.from_tensor_slices((x_test,y_test)).batch(128)
+test_iter=iter(test_db)
+
+
+
 train_db=tf.data.Dataset.from_tensor_slices((x,y)).batch(128)
 train_iter=iter(train_db)
 sample=next(train_iter)
@@ -70,3 +77,27 @@ for epoch in range(10):
 
         if step%100==0:
             print(epoch,step,"loss",float(loss))
+
+    total_correct,total_num=0,0
+    #测试[w1,b1,w2,b2,w3,b3]
+    for step,(x,y) in enumerate(test_db):
+        #[b,28,28]->[b,28*28]
+        x=tf.reshape(x,[-1,28*28])
+        #[b,784]->[b,256]->[b,128]->[b,10]
+        h1=tf.nn.relu(x@w1+b1)
+        h2=tf.nn.relu(h1@w2+b2)
+        out=h2@w3+b3
+        #out;[b,10]
+        #prob;[b,10]->[0,1]
+        prob=tf.nn.softmax(out,axis=1)
+        #[b,10]->[b]
+        #int64!!1
+        pred=tf.argmax(prob,axis=1)
+        pred=tf.cast(pred,dtype=tf.int32)
+        #y:[b]
+        correct=tf.cast(tf.equal(pred,y),dtype=tf.int32)
+        correct=tf.reduce_sum(sum(correct))
+        total_correct+=int(correct)
+        total_num+=x.shape[0]
+    acc=total_correct/total_num
+    print('test acc',acc)

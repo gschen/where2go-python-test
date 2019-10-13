@@ -68,6 +68,8 @@ p=8000#冷链产品单位价格
 
 quelity=3 #空车重量
 R=36000#能源，单位w/h
+
+
 start_time=0#发车次数
 
 
@@ -298,8 +300,10 @@ def energy_cost(total_history,wij_list):
             wij=wij_list[i][j]+3 #货物重量加空车质量，单位t
             distance=reference[last][next]
             distance_list.append(distance)
+
             y = 9.8 * distance * 0.01 / (0.9*3.6)
             beta = 1.7 * distance * 35 * 35 /(0.9*3.6*3.6*3.6)
+
             #print(beta)
             eij=y * wij + beta
 
