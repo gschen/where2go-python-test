@@ -1,7 +1,6 @@
 import numpy as np
 import cv2 as cv
-import os
-src=cv.imread("D:/pecture/T0t0.jpg")
+src=cv.imread("T0t0.jpg")
 cv.namedWindow("src",cv.WINDOW_AUTOSIZE)
 cv.imshow('src',src)
 src=np.array(src)
