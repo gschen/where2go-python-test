@@ -6,7 +6,7 @@ def gray_pixels(image):
     for i in range(len(image)):
         for j in range(len(image[i])):
             a = image[i][j]
-            g = 0.59*a[0]+0.11*a[1]+a[2]*0.30
+            g = 0.59*a[0]+0.11*a[1]+a[2]*0.30#工业电视标准
             image[i][j]=g
     cv.imshow("gary image",image)
     print(image.shape)
@@ -20,10 +20,21 @@ def chgray_pixels(image):
             image[i][j]=g
     cv.imshow("gary image",image)
 
-
-
 src = cv.imread("D:/pecture/T0t0.jpg")#gbr
 cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
+#腐蚀
+kernel = np.ones((2*2),np.uint8)
+erode = cv.erode(src,kernel,iterations=1)
+#膨胀
+dilata = cv.dilate(src,kernel,iterations=1)
+#开运算；先腐蚀再膨胀
+open = cv.morphologyEx(src,cv.MORPH_OPEN,kernel)
+#闭运算；先膨胀后腐蚀
+closing = cv.morphologyEx(src,cv.MORPH_CLOSE,kernel)
+cv.namedWindow("open img",cv.WINDOW_AUTOSIZE)
+cv.namedWindow("dilata img",cv.WINDOW_AUTOSIZE)
+cv.imshow("open img",open)
+cv.imshow("dilata img",dilata)
 
 # 滤波的几个基本方法
 # 均值滤波：
@@ -34,17 +45,10 @@ src_mind = cv.medianBlur(src, 5)
 src_Guassian = cv.GaussianBlur(src, (5, 5), 0)
 # 双边滤波：
 src_bilater = cv.bilateralFilter(src, 9, 75, 75)
-#手动添加噪声点
-def img_noise(img):
-    for i in range(len(img), 20):
-        for j in range(len(img[i])):
-            noise = img[i][j]
-            img[i][j] = 255 - noise
-    cv.imshow("noise img",img)
 
 #cv.imshow("input src_mind",src_mind)
+
 cv.imshow("input image",src)
 #chgray_pixels(src)
-img_noise(src)
 cv.waitKey(0)
 cv.destroyAllWindows()
