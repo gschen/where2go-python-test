@@ -1,6 +1,6 @@
 import numpy as np
 import cv2 as cv
-src=cv.imread("T0t0.jpg")
+src=cv.imread("imgs/fire/T0t0.jpg")
 cv.namedWindow("src",cv.WINDOW_AUTOSIZE)
 cv.imshow('src',src)
 src=np.array(src)

@@ -20,7 +20,7 @@ def chgray_pixels(image):
             image[i][j]=g
     cv.imshow("gary image",image)
 
-src = cv.imread("D:/pecture/T0t0.jpg")#gbr
+src = cv.imread("imgs/fire/T0t0.jpg")#gbr
 cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
 #腐蚀
 kernel = np.ones((2*2),np.uint8)
