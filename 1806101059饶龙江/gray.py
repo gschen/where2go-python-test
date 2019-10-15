@@ -31,7 +31,7 @@ cv.waitKey(0)
 cv.destroyAllWindows()
 
 #滤波的几个基本方法
-#均值滤波
+#均值滤波：
 #中值滤波
 #高斯滤波
 #双边滤波
