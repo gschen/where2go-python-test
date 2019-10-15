@@ -1,0 +1,22 @@
+#简单输出整数
+s = eval(input("请输入一个整数："))
+for i in range(s):
+    a = i+1
+    print(a)
+#多项式求值
+n = eval(input("输入多项式阶数："))
+x = eval(input("输入x的值："))
+c = 0
+f = 0
+for i in range(n+1):
+    j = c+i
+    a = eval(input("输入系数a%d："%j))
+    f = a*(x**j)+f
+
+print("得到的多项式的值为：%d"%f)
+#简单求和
+
+
+
+
+
