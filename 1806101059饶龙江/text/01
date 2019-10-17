@@ -14,7 +14,24 @@ for i in range(n+1):
     f = a*(x**j)+f
 
 print("得到的多项式的值为：%d"%f)
+#厘米转化成英尺、英寸
+x = eval(input("输入一个整数(厘米):"))
+a = 12/13/0.3048/100
+inch =int( x * a)
+foot = int(inch*12)
+print("对应的英制长度英尺和英寸的整数位分别为：{}, {}".format(inch,foot))
 #简单求和
+b = eval(input("输入需要求和的整数个数："))
+s = []
+f = 0
+for i in range(b):
+    a =eval(input())
+    s.append(a)
+for j in s:
+    f = f + j
+print("得到的和为：%d"%f)
+
+
 
 
 
