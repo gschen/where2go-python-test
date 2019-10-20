@@ -3,7 +3,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 #tensorflow 2.0 学习笔记
 #基础操作篇
 import tensorflow as tf
-import numpy as np
+import numpy1 as np
 '''
 1.TF中的数据表达
     Tf.Tensor

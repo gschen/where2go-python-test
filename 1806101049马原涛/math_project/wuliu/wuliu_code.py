@@ -1,6 +1,6 @@
 import csv
 import math
-import numpy as np
+import numpy1 as np
 import sys
 
 sys.setrecursionlimit(100000) #迭代次数上限设置

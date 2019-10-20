@@ -1,6 +1,6 @@
 #索引与切片1
 import tensorflow as tf
-import numpy as np
+import numpy1 as np
 
 #1.与python列表相同取法
 a=tf.ones([1,5,5,3])#一个tensor，5行5列3通道

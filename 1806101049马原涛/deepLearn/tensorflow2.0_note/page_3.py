@@ -1,6 +1,6 @@
 #维度变换
 import tensorflow as tf
-import numpy as np
+import numpy1 as np
 #View
 '''
     [b,28,28]=[照片数、行、列]

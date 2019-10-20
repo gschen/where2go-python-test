@@ -1,5 +1,5 @@
 import tensorflow as tf
-import numpy as np
+import numpy1 as np
 
 #Broadcasting
 #优化手段，应用于不同行列数之间的矩阵相加
