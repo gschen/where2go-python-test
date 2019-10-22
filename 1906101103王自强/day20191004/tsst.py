@@ -1,0 +1,9 @@
+x=int(input("请输入一个正整数："))
+sum=1
+n=0
+i=1
+while i<=x:
+    sum=sum+n
+    n=1/(2*i+1)
+    i=i+1
+print("sum=%.6f"%sum)
