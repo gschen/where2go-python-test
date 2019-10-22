@@ -1,0 +1,54 @@
+import cv2 as cv
+import numpy as np
+#import  matplotlib.pyplot as plt
+#一般灰度化方法
+def gray_pixels(image):
+    for i in range(len(image)):
+        for j in range(len(image[i])):
+            a = image[i][j]
+            g = 0.59*a[0]+0.11*a[1]+a[2]*0.30#工业电视标准
+            image[i][j]=g
+    cv.imshow("gary image",image)
+    print(image.shape)
+
+#改进的灰度化方法：由于处理火灾图像时，需要突出火焰区域，所以可以改变权值的取值范围，使得火焰区域明显。
+def chgray_pixels(image):
+    for i in range(len(image)):
+        for j in range(len(image[i])):
+            a = image[i][j]
+            g = 0*a[0]+0*a[1]+1*a[2]#示例
+            image[i][j]=g
+    cv.imshow("gary image",image)
+
+src = cv.imread("imgs/fire/02.PNG")#gbr
+cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
+#腐蚀
+kernel = np.ones((2*2),np.uint8)
+erode = cv.erode(src,kernel,iterations=1)
+#膨胀
+dilata = cv.dilate(src,kernel,iterations=1)
+#开运算；先腐蚀再膨胀
+open = cv.morphologyEx(src,cv.MORPH_OPEN,kernel)
+#闭运算；先膨胀后腐蚀
+'''closing = cv.morphologyEx(src,cv.MORPH_CLOSE,kernel)
+cv.namedWindow("open img",cv.WINDOW_AUTOSIZE)
+cv.namedWindow("dilata img",cv.WINDOW_AUTOSIZE)
+cv.imshow("open img",open)
+cv.imshow("dilata img",dilata)'''
+
+# 滤波的几个基本方法
+# 均值滤波：
+src_mean = cv.blur(src, (5, 5))
+# 中值滤波：
+src_mind = cv.medianBlur(src, 5)
+# 高斯滤波：
+src_Guassian = cv.GaussianBlur(src, (5, 5), 0)
+# 双边滤波：
+src_bilater = cv.bilateralFilter(src, 9, 75, 75)
+
+cv.imshow("input src_mind",src_mind)
+
+cv.imshow("input image",src)
+#chgray_pixels(src)
+cv.waitKey(0)
+cv.destroyAllWindows()
