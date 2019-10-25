@@ -17,3 +17,4 @@ a = 0
 for i in range(b):
     a+= jiecheng(b)
     b -=1
+print(a)
