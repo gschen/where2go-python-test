@@ -4,4 +4,4 @@ x,y,z =int(x),int(y),int(z)
 a=max(x,y,z)
 b=min(x,y,z)
 print(b,x+y+z-a-b,a)
-#3
+#30
