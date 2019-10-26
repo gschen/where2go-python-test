@@ -19,5 +19,5 @@ for n in range(1,21):
         b1 = 1
     c = b/b1
     sum+=c
-print("数列前二十项和为：".format(sum))
+print("数列前二十项和为：{}".format(sum))
 
