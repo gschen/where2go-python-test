@@ -20,35 +20,35 @@ def chgray_pixels(image):
             image[i][j]=g
     cv.imshow("gary image",image)
 
-src = cv.imread("imgs/fire/02.PNG")#gbr
+src = cv.imread("imgs/fire/7.PNG")#gbr
 cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
-#腐蚀
+#膨胀
 kernel = np.ones((2*2),np.uint8)
 erode = cv.erode(src,kernel,iterations=1)
-#膨胀
-dilata = cv.dilate(src,kernel,iterations=1)
+#腐蚀
+kernel = np.ones((2*2),np.uint8)
+dilata1 = cv.dilate(src,kernel,iterations=1)
+dilata2 = cv.dilate(dilata1,kernel,iterations=1)
+
 #开运算；先腐蚀再膨胀
 open = cv.morphologyEx(src,cv.MORPH_OPEN,kernel)
 #闭运算；先膨胀后腐蚀
-'''closing = cv.morphologyEx(src,cv.MORPH_CLOSE,kernel)
+closing = cv.morphologyEx(src,cv.MORPH_CLOSE,kernel)
 cv.namedWindow("open img",cv.WINDOW_AUTOSIZE)
 cv.namedWindow("dilata img",cv.WINDOW_AUTOSIZE)
-cv.imshow("open img",open)
-cv.imshow("dilata img",dilata)'''
+cv.imshow("open img",erode)
+cv.imshow("dilata img",dilata2)
 
 # 滤波的几个基本方法
 # 均值滤波：
 src_mean = cv.blur(src, (5, 5))
 # 中值滤波：
-src_mind = cv.medianBlur(src, 5)
+src_mind = cv.medianBlur(src, 7)
 # 高斯滤波：
-src_Guassian = cv.GaussianBlur(src, (5, 5), 0)
+src_Guassian = cv.GaussianBlur(src, (3,3 ), 0)
 # 双边滤波：
 src_bilater = cv.bilateralFilter(src, 9, 75, 75)
-
-cv.imshow("input src_mind",src_mind)
-
-cv.imshow("input image",src)
+cv.imshow("input image",src_mind)
 #chgray_pixels(src)
 cv.waitKey(0)
 cv.destroyAllWindows()
