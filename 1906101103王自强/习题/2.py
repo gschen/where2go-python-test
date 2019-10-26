@@ -4,4 +4,4 @@ for i in range(1,100000):
     n=int(math.sqrt(268+i))
     if m*m==i+100 and n*n==i+268:
         print(i)
-#2
+#20
