@@ -8,3 +8,4 @@ while True:
         n2 = n1
         n1 = x
         print('第{}项数是{}'.format(n, x))
+        #4
