@@ -7,3 +7,4 @@ for i in range(1,11):
     if i==10:
         s-=h
 print('总里程为{}米，第10次跳了{}米'.format(s,h))
+#7

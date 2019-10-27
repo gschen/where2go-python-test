@@ -12,3 +12,4 @@ elif x==2:
 else:
     z=y[0]
 print('你输入的是{}位数，倒叙过后是{}。'.format(x,z))
+#12
