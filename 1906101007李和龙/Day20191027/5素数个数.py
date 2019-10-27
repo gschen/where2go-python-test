@@ -13,3 +13,4 @@ for m in range(101,200):
 c = b - a
 print(c)
 print(len(c))
+
