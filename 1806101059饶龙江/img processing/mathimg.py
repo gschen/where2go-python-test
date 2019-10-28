@@ -3,21 +3,27 @@ import numpy as np
 
 src = cv.imread("imgs/fire/code.jpg")
 cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
-#cv.imshow("input",src)
-print(src.shape)
-#将图像放大5倍。
-w = src.shape[0]
-h = src.shape[1]
-src1 = cv.resize(src,(5*h,5*w),interpolation=cv.INTER_CUBIC)
-cv.imshow("fangda",src1)
+
 #灰度化图像：
-def gray_pixels(image):
+def dispose_pixels(image):
     for i in range(len(image)):
         for j in range(len(image[i])):
             a = image[i][j]
             g = 0.59*a[0]+0.11*a[1]+a[2]*0.30#工业电视标准
             image[i][j]=g
-    #cv.imshow("gary image",image)
+    cv.imshow("gary image",image)
+    src_bilater = cv.bilateralFilter(image, 9, 75, 75)#双边滤波
+    cv.imshow("bilater1", src_bilater)
+    src_Guassian = cv.GaussianBlur(image, (3, 3), 0)#高斯滤波
+    cv.imshow("guassian1", src_Guassian)
+    kernel = np.ones((1 * 2), np.uint8)#设置1*2的结构元素
+    dilata1 = cv.dilate(src_bilater, kernel, iterations=1)#用结构元素腐蚀图像
+    kerne2 = np.ones((3 * 1), np.uint8)#设置新的结构元素
+    erode = cv.erode(dilata1, kerne2, iterations=1)#用结构元素进行数字信息的膨胀
+    cv.imshow("bilater", erode)
+
+
+
 
 #膨胀
 '''kernel = np.ones((2*2),np.uint8)
@@ -46,6 +52,6 @@ cv.imshow("bilater",src_bilater)#根据不同滤波方法的对比，发现双�
 故选用双边滤波法。
 '''
 
-
+dispose_pixels(src)
 cv.waitKey(0)
 cv.destroyAllWindows()
