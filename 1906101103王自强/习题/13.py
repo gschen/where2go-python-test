@@ -9,3 +9,4 @@ if a==e and a+1==b and b+1==c and b==d:
     print('这是回文数')
 else:
     print('这不是回文数')
+    #13
