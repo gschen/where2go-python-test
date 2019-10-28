@@ -15,3 +15,4 @@ for i in range(1,n+1):
     z3=z2+z1
     z2=z1
 print('前{}项和为{}'.format(n,z3))
+#10
