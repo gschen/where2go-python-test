@@ -12,6 +12,6 @@ def hanshu(a):
             return 1
         else:
             return 1/a + hanshu (a-2)
-m = int(input())
+m = int(input("请输入一个数："))
 print(hanshu(m))
 
