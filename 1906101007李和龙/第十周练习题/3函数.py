@@ -14,3 +14,4 @@ def hanshu(a):
             return 1/a + hanshu (a-2)
 m = int(input())
 print(hanshu(m))
+
