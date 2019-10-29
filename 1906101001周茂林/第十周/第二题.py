@@ -7,11 +7,14 @@ def qq(number):
     number = list(range(1,number+1))
     aa = len(number)
     bb = []
-    while aa == 2:
+    while aa > 2:
         for i in range(2,aa+1,3):
-            bb.append(aa[i])
+            bb.append(number[i])
         npbb = np.array(bb)
-        npaa = np.array(aa)
-        aa = npaa - npbb
-    print(aa[2])
+        npnumber = np.array(number)
+        number = npnumber - npbb
+    print(number[2])
 
+
+
+qq(23)

@@ -13,5 +13,4 @@ def jo(number):
     while aa != number:
         s += 1 / aa
         aa += 2
-        if aa == number:
-            print(s)
+    print(s)
