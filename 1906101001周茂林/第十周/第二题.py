@@ -4,12 +4,14 @@
 '''
 def qq(n):
     l = list(range(1,n+1))
-    if n == 1:
-        print(l[0])
-    else:
-        while len(l) != 1:
-            aa = len(l) % 3
-            for i in range(2-aa,n+1,3):
-                del l[i]
+    while len(l) > 3:
+        del l[2]
+        a,b = l[0],l[1]
+        l.remove(a)
+        l.remove(b)
+        l.extend([a,b])
+    if 2 <= len(l) <= 3:
+        print(l[1])
+    if len(l) == 1:
         print(l[0])
 qq(12)
