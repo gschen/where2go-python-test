@@ -9,24 +9,20 @@ from sqlalchemy import Column, String, Integer
 from flask_admin import Admin,BaseView, expose
 from flask_admin.contrib.sqla import ModelView
 
+import requests
+from bs4 import BeautifulSoup
+
 db = SQLAlchemy()
 
-class User(db.Model):
+#########################################################################################################
+class Movie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), nullable=False)
+    movie_title = db.Column(db.String(200))
+    movie_href = db.Column(db.String(200))
 
-class UserView(ModelView):
-        can_delete = True  # disable model deletion
-
-
-class Job(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    position = db.Column(db.String(100))
-
-class JobView(ModelView):
-    pass
-
+class MovieView(ModelView):
+    can_delete = True  # disable model deletion
+#########################################################################################################
 
 app = Flask("tour-of-heroes")
 app.secret_key = 'super secret key'
@@ -40,25 +36,25 @@ def create_db():
     db.create_all()
     return "DB created"
 
-@app.route('/addusers', methods=['GET'])
-def add_users():
-
-    for i in range(10000, 20000):
-        u = User(username='chen_%d'%i, email='100%d@qq.com' % i)
-        db.session.add(u)
-        db.session.commit()
-    pass
+@app.route('/add', methods=['GET'])
+def add_data():
+    soup = BeautifulSoup(requests.get('https://www.kankanwu.com/Animation/').content)
+    for a in soup.select('dd > a'):
+        try:
+            db.session.add(Movie(movie_title=a['title'], movie_href=a['href']))
+            db.session.commit()
+        except Exception as e:
+            print(e)
 
 # RestAPI 配置部分
 api = Api(app)
-api.add_model(User, "/users")
-api.add_model(Job, "/jobs")
+api.add_model(Movie, "/movies")
 
 
-# 后台管理部分
+
+# 后台管理页面
 admin = Admin(app, name='统一后台管理模板', template_mode='bootstrap3')
-admin.add_view(UserView(User, db.session))
-admin.add_view(JobView(Job, db.session))
+admin.add_view(MovieView(Movie, db.session))
 
 if __name__ == "__main__":
     app.run()
