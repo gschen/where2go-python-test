@@ -30,6 +30,3 @@ def qqaa(q):
                 break
         if m != -1:
             print('TTTT')
-
-
-qqaa('([{223])')
