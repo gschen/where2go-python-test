@@ -5,9 +5,13 @@
 2.左括号必须以正确的顺序闭合。
 '''
 # '[]{}()'   '[{()}]'  当类似两种情况都不符合时，FFFF
-def qqaa(s):
+def qqaa(q):
+    s = []
+    for i in q:
+        if i == '(' or i == ')' or i == '[' or i == ']' or i == '{' or i == '}' :
+            s.append(i)
     if len(s) % 2 != 0:
-        print('TTTT')
+        print('FFFF')
     else:
         m = 0
         while m < len(s)-2:
@@ -28,4 +32,4 @@ def qqaa(s):
             print('TTTT')
 
 
-qqaa('([{}])')
+qqaa('([{223])')
