@@ -22,4 +22,5 @@ def numsabc(nums):
     for p in z:
         print(''.join(str(p)))
 
+
 numsabc([-1,0,1,2,-1,-4])
