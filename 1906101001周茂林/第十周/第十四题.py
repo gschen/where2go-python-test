@@ -8,14 +8,13 @@
 你的任务是算出所有可能情况。每个答案占一行。
 答案：0010110011、0111010000、1011010000
 '''
-import random
-for i in range(2**10):
+import itertools
+a = b = c = d = e = f = g = h = i = j = [str(0),str(1)]
+for l in itertools.product(a,b,c,d,e,f,g,h,i,j):
     n = 10
-    aa = []
-    for b in range(1,11):
-        a = random.randint(0,1)
-        if a == 1: n *= 2
-        else: n -= b
-        aa.append(a)
-    if n == 100:
-        print(aa)
+    s = 1
+    for i in l:
+        if i == str(1): n *= 2
+        else: n -= s
+        s += 1
+    if n == 100: print(''.join(l))
