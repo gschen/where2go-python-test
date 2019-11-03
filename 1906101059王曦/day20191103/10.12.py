@@ -1,3 +1,4 @@
+#
 def dao(x):
     list1 = list(str(x))
     list1.reverse()
