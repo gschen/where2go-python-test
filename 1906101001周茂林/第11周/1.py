@@ -9,12 +9,10 @@
 def qwqqw(n):
     list1 = []
     while int(n):
-        list1.append(n % 2)
+        list1.append(str(n % 2))
         n = n // 2
     list1.reverse()
-    for i in list1:
-        int(i)
-        print(i,end='')
+    print(''.join(list1))
 
 
 qwqqw(10)
