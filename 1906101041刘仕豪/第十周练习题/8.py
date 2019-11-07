@@ -10,3 +10,4 @@ def ba(s):
     k = list(dic.keys())[list(dic.values()).index(max(dic.values()))]
     v = max(dic.values())
     print(s[k:v + k + 1:])
+ba('asdsagtg')
