@@ -10,7 +10,7 @@ def maopao(ls):
 
     return ls
 
-l = input()
+l = input("请输入一串数字，以空格分隔：")
 mmm = list()
 for ii in l.split():
     ii = int(ii)
