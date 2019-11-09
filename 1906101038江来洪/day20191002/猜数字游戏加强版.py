@@ -16,7 +16,7 @@ while i <= x:
     print('恭喜你，猜了%d次，猜中了' % n)
     i += 1
     print('你已经玩了%d局猜数字游戏了，你还想玩吗?'% i)
-    m = int(input('0(不完了) or 1(再来一次)? :'))
+    m = int(input('0(不玩了) or 1(再来一次)? :'))
     n = 1
     if m == 1:
         true_num = (random.choice(range(10)))
