@@ -10,7 +10,7 @@ def crpx(ls):
             q -= 1
         ls[q+1] = k
     for o in range(len(ls)):
-        print(ls[o],end=',')
+        print(ls[o],end=' ')
 
 
 
