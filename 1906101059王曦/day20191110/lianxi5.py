@@ -1,4 +1,3 @@
-#求列表中最大最小
 def finminamax(args):
     a = args[0]
     b = args[0]
