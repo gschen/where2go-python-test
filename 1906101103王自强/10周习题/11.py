@@ -11,4 +11,4 @@ for i in range(1,61):
         y*=2
     if i%3==0:
         x*=2
-    print(y)
+print(y)
