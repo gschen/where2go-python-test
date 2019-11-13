@@ -1,4 +1,3 @@
-
 def quadratic(a,b,c):
     delta=b**2-4*a*c
     if delta>=0:
