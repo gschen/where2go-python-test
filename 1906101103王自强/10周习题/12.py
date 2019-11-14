@@ -15,7 +15,6 @@ def fun(i):
     ge=i%10
     result=ge*10000+shi*1000+bai*100+qian*10+wan
     return result
-l=[]
 for i in range(10000,100000):
     for j in range(1,10):
         wan = i // 10000
