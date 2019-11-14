@@ -18,3 +18,5 @@ else:
         if m!=10 and 'z'>=d[i]>='a' or 'Z'>=d[i]>='A' :      #这里一定要判断是否为英文字母，题意给出的！
             m=m+1
             print("{}".format(d[i]),end="")
+
+
