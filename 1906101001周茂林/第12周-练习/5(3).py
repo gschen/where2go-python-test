@@ -48,12 +48,9 @@ for i in range(1,n):
     ll.pop(i*m)
 print(ll)
 for i,k in zip(range(m*n),ll):
-    print(i,'>>>>>>>')
-    print(k,']]]]]]')
     for j in range(9):
         ans[i] += int(v[j]) * int(h[k])
         k += 1
-    print(ans[i],'??????')
 
 print('ans=',end='')
 for i in range(len(ans)):
