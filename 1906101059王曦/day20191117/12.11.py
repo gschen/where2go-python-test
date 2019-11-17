@@ -4,7 +4,7 @@ def kuo(s):
     k="()[]{}"
     for i in range(len(s)):
         si = s[i]
-        if kuohao.find(si) == -1:
+        if kuo.find(si) == -1:
             continue
         if si == '(' or si == '[' or si == '{':
             l.append(si)
