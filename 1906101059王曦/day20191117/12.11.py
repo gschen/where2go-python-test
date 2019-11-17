@@ -1,10 +1,10 @@
 #括号匹配
 def kuo(s):
     l = []
-    k="()[]{}"
+    kuoh="()[]{}"
     for i in range(len(s)):
         si = s[i]
-        if kuo.find(si) == -1:
+        if kuoh.find(si) == -1:
             continue
         if si == '(' or si == '[' or si == '{':
             l.append(si)
