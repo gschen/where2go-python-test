@@ -21,3 +21,14 @@ for n in range(1,21):
     sum+=c
 print("数列前二十项和为：{}".format(sum))
 
+
+#第二次修改
+def fibsum(n):
+    a = 2
+    b = 1
+    c = a / b
+    for i in range(0, n-1):
+        a, b = a + b, a
+        c += a / b
+    print(c)
+

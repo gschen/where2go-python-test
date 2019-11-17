@@ -14,7 +14,7 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email = db.Column(db.String(120), nullable=False)
 
 class UserView(ModelView):
         can_delete = True  # disable model deletion
@@ -39,6 +39,15 @@ db.init_app(app)  # Must be called before Api object creation
 def create_db():
     db.create_all()
     return "DB created"
+
+@app.route('/addusers', methods=['GET'])
+def add_users():
+
+    for i in range(10000, 20000):
+        u = User(username='chen_%d'%i, email='100%d@qq.com' % i)
+        db.session.add(u)
+        db.session.commit()
+    pass
 
 # RestAPI 配置部分
 api = Api(app)
