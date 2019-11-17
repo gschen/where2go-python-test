@@ -1,7 +1,7 @@
 #括号匹配
 def kuo(s):
     l = []
-    kuohao="()[]{}"
+    k="()[]{}"
     for i in range(len(s)):
         si = s[i]
         if kuohao.find(si) == -1:
