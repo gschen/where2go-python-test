@@ -46,11 +46,13 @@ ll = [x for x in range(len(h))]
 for i in range(1,n):
     ll.pop(i*m)
     ll.pop(i*m)
-print(ll)
+print(ll,int(h[6]))
 for i,k in zip(range(m*n),ll):
     for j in range(9):
+        print(int(v[j]),'*',int(h[k]),end=' ')
         ans[i] += int(v[j]) * int(h[k])
         k += 1
+    print('\n')
 
 print('ans=',end='')
 for i in range(len(ans)):
