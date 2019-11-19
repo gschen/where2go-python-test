@@ -10,3 +10,4 @@ for z in p1:
 				n = n + 1
 				print(z,x,v)
 print('一共有{}个'.format(n))
+
