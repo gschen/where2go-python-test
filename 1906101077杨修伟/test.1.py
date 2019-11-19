@@ -1,1 +1,1 @@
-print("hello，yxw")
+print("hello，y")
