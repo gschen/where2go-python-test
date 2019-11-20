@@ -1,4 +1,5 @@
 # coding=utf-8
-import datetime
-print(datetime.now())
+from datetime import datetime
+today=datetime.now()
+print(today)
 print('hello world')
