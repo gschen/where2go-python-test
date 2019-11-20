@@ -14,3 +14,4 @@ for i in range(m,n+1):
         s = s + int(m)**2
     if s > i:
         print(i)
+
