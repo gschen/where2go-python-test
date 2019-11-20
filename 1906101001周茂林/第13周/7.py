@@ -18,3 +18,4 @@ lis2.pop(-1)
 print(n,'=',end=' ')
 for k in lis2:
     print(k,end=' ')
+

@@ -14,7 +14,7 @@
 '''
 s = input()
 L = ['Jan', 'Feb', 'Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-if len(s) <= 7:
+if len(s) < 7:
     print('2000Jan')
 else:
     for i in range(len(s)-3):
@@ -22,11 +22,12 @@ else:
         for j in lis:
             if not j.isdigit():
                 lis = []
-    if len(lis) != 0:
-        lis2 = [s[i+4],s[i+5],s[i+6]]
-        ss = ''.join(lis2)
-        if ss in L:
-            lis3 = [s[i],s[i+1],s[i+2],s[i+3],s[i+4],s[i+5],s[i+6]]
-            print(''.join(lis3))
-    else:
-        print('2000Jan')
+        if len(lis) != 0:
+            lis2 = [s[i+4],s[i+5],s[i+6]]
+            ss = ''.join(lis2)
+            if ss in L:
+                lis3 = [s[i],s[i+1],s[i+2],s[i+3],s[i+4],s[i+5],s[i+6]]
+                print(''.join(lis3))
+                L = []
+if len(L) != 0:
+    print('2000Jan')

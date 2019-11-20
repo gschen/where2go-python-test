@@ -4,10 +4,10 @@
 输入说明:第一行为源字符串SS,第二行为目标字符串TS。
 输出说明:可以输出"YES" ，不可以输出"NO" 。
 输入样例1: Thereisacomputer
-Treat
+          Treat
 输出样例1: YES
 输入样例2: Thereisacomputer
-Trait
+          Trait
 输出样例2: NO
 '''
 SS = input()
