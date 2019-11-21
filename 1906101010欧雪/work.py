@@ -8,7 +8,7 @@ if x<5 and y<=40:
         i=y*30
 if x<5 and y>40:
         i=40*30+(y-40)*30*3/2
-print(i)
+print("%.2f" %i)
 
 
 
