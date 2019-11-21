@@ -8,4 +8,4 @@ def fib(n):
 	if n == 1:
 		b = 0
 	print(b)
-fib(10)
+fib(9)
