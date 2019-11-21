@@ -9,7 +9,7 @@ l=list(input().split(' '))
 def isheshu(x):
     a=False
     for i in range(2,x):
-        if x%i==00:
+        if x%i==0:
             a=True
             break
     return a
