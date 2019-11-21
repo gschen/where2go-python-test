@@ -1,0 +1,6 @@
+x=int(input('请输入一个整数x:'))
+y=int(input('请输入一个整数y:'))
+z=int(input('请输入一个整数z:'))
+m=max(x,y,z)
+n=min(x,y,z)
+print(n,x+y+z-m-n,m)
