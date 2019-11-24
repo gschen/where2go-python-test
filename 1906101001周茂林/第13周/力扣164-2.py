@@ -14,3 +14,4 @@ def countServers(grid):
     print(n)
 
 countServers([[1,0,0,1,0],[0,0,0,0,0],[0,0,0,1,0]])
+
