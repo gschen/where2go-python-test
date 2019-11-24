@@ -10,4 +10,3 @@ print(kjm.strftime("%Y=%m=%d"))
 print(kjm.strftime("%Y/%m?%d"))
 print("{0:%Y}年{0:%m}月{0:%d}日".format(kjm))
 print("{0:%d}日{0:%m}月{0:%Y}年".format(kjm))
-
