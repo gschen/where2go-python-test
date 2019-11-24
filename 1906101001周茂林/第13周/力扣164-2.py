@@ -2,10 +2,12 @@ def countServers(grid):
     n = 0
     le = len(grid[0])
     for i in grid:
-        for j in range(len(i)):
-            for h in range(len(i)):
-                if j != h and i[j] == i[h] == 1:
-                    n += 1
+        m = 0
+        for j in i:
+            if j == 1:
+                m += 1
+        if m > 1:
+            n += m
     for p in range(len(grid)):
         for g in range(len(grid)):
             for f in range(le):
@@ -13,5 +15,5 @@ def countServers(grid):
                     n += 1
     print(n)
 
-countServers([[1,0,0,1,0],[0,0,0,0,0],[0,0,0,1,0]])
+countServers([[1,1,0,1,0],[0,0,0,0,0],[0,0,0,1,0]])
 
