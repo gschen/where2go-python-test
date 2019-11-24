@@ -15,3 +15,5 @@ class Solution:
         else:
             print(n)
     minTimeToVisitAllPoints([[1,1],[3,4],[-1,0]])
+
+
