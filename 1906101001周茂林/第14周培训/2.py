@@ -11,8 +11,9 @@ for i in range(2, N+1):
     else:
         lis.append(i)
 lis2 = []
-for p in lis:
-    while type(N / p) == int:
+while N != 1:
+    for p in lis:
         lis2.append(p)
         N /= p
+        break
 print(lis2)
