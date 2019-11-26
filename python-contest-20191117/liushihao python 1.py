@@ -8,9 +8,7 @@
 输出样例: 6 12
 '''
 N = int(input())
-list = list(map(int,input().split()))
+list =list(map(int,input().split()))
 for i in list:
     if i%6 == 0:
         print('{:>1}'.format(i),end=' ')
-
-
