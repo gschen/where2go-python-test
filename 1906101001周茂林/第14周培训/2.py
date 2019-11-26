@@ -1,19 +1,18 @@
 '''
 正整数分解
 '''
-N = int(input())
-n = N
-lis = []
-for i in range(2, N+1):
-    for j in range(2, i):
-        if i % j == 0:
-            break
-    else:
-        lis.append(i)
-lis2 = []
-while N != 1:
-    for p in lis:
-        lis2.append(p)
-        N /= p
-        break
-print(lis2)
+def fenjie(n):
+    lis = []
+    for i in range(2,n+1):
+        while n % i == 0:
+            lis.append(i)
+            n /= i
+    return lis
+
+
+n = int(input())
+l = fenjie(n)
+if len(l) > 1:
+    print(n, '=', ' * '.join([str(x) for x in l]))
+else:
+    print(n, '=', n, '*', '1')
