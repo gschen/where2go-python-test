@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-src = cv.imread("imgs/fire/code.jpg")
+src = cv.imread("imgs/fire/001.jpg")
 cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
 
 #灰度化图像：
@@ -12,6 +12,7 @@ def dispose_pixels(image):
             g = 0.59*a[0]+0.11*a[1]+a[2]*0.30#工业电视标准
             image[i][j]=g
     cv.imshow("gary image",image)
+
     src_bilater = cv.bilateralFilter(image, 9, 75, 75)#双边滤波
     cv.imshow("bilater1", src_bilater)
     src_Guassian = cv.GaussianBlur(image, (3, 3), 0)#高斯滤波
@@ -21,6 +22,7 @@ def dispose_pixels(image):
     kerne2 = np.ones((3 * 1), np.uint8)#设置新的结构元素
     erode = cv.erode(dilata1, kerne2, iterations=1)#用结构元素进行数字信息的膨胀
     cv.imshow("bilater", erode)
+
 
 
 
