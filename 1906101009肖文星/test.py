@@ -1,0 +1,1 @@
+print("Hello world，where2go")
