@@ -43,3 +43,11 @@ for k in l2:
     print(k,end='')
 
 #5
+l = []
+for i in range(1,100001):
+    i = str(i)
+    n = i[::-1]
+    if i == n:
+        i = int(i)
+        l.append(i)
+print(l)
