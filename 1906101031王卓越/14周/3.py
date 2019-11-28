@@ -5,5 +5,9 @@ a=2
 b=1
 for i in range(19):
     s=s+raw(a,b)
+    k=a
+    a=a+b
+    b=k                                        
+    print(s)
 print(s)
     

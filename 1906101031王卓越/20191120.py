@@ -23,4 +23,4 @@ def raw(k):
             print("false")
         elif p==1:
             print("true")
-raw("[](){}")
+print(raw("(ftghfg){()}"))
