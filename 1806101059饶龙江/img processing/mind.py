@@ -26,7 +26,7 @@ def number_mind(img):
             m7 = img[k+1][l-1]
             m8 = img[k-1][l+1]
            #记录灰度值差值，并将它们加入列表
-            o1 = abs(int(m1[1]) - int(m0[1]))
+            o1 = abs(int(m1[1]) - int(m0[1]))#在此处需要注意将数值强制转化成整型，否则会出现数据溢出的错误。
             list.append(o1)
             o2 = abs(int(m2[1]) - int(m0[1]))
             list.append(o2)
