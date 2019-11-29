@@ -8,6 +8,9 @@ def delsame(l):
         if i not in l2:
             l2.append(i)
     return len(l2),l2
+'''
+
+'''
 #2
 t = 0
 for a in range(1,10):
