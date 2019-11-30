@@ -11,8 +11,6 @@ chapter_list = re.findall(r'href=\'(.*?)\' >(.*?)<', chapter)
 for i in chapter_list:
     chapter_url, chapter_title = i
     chapter_url = 'http://www.xbiquge.la%s' % chapter_url
-    print(chapter_url)
-    exit()
     chapter_response = requests.get(chapter_url)
     chapter_response.encoding = 'utf-8'
     chapter_html = chapter_response.text

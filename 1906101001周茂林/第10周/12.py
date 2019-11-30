@@ -7,8 +7,9 @@ ABCDE * ? = EDCBA
 请你利用计算机的优势，找到破解的答案。
 把 ABCDE 所代表的数字写出来。
 '''
-for i in range(1,10):
-    for m in range(10000,100000):
+for i in range(1, 10):
+    for m in range(10000, 100000):
         n = int(str(m)[::-1])
-        if m*i==n and str(m)[0]!=str(m)[1] and str(m)[2]!=str(m)[3] and str(m)[4]!=str(m)[0] and str(m)[2]!=str(m)[4]:
+        if m*i == n and str(m)[0] != str(m)[1] and str(m)[2] != str(m)[3] \
+                and str(m)[4] != str(m)[0] and str(m)[2] != str(m)[4]:
             print(m)
