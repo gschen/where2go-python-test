@@ -6,7 +6,7 @@ print('欢迎来到第一题')
 print()
 L=[]
 l=set([1,1,1,2,3,4,4,4])
-print(l)
+# print(l)
 for i in l:
     # print(i)
     L.append(i)
