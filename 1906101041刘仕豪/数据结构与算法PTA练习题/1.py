@@ -25,3 +25,13 @@ for i in range(k):
         a = sum(l[i:j+1])
         L.append(a)
 print(max(L))
+
+
+n = int(input())
+l = list(map(int,input().split()))
+l2 = []
+for i in range(0,n):
+    for j in range(1,n):
+        if i < j:
+            l2.append(sum(l[i:j+1]))
+print(max(l2))
