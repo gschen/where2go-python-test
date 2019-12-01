@@ -1,12 +1,14 @@
-def raw(n):
+def raw(k):
     s=[]
-    for a in range(0,len(n)):
-        for b in range(a+1,len(n)):
-            if n[a]==n[b]:               
-                l=n[a:b+1]
-                print(l)
-                break
-                s.append(len(l))
-            #for k in range(0,len(n)):
-    return s
-print(raw("babadwdadaafdf"))
+    for u in k:
+        s.append(u)              
+    s.reverse()
+    return (''.join(s))
+p=[]
+n=input('请输入字符串：')
+for a in range(len(n)+1):
+        for b in range(len(n)+1):
+            k=n[b:a]
+            if k==raw(k):
+                p.append(k)
+print(max(p))
