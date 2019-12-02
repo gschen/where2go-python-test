@@ -6,4 +6,3 @@ for a in range(len(ls)-1):
         else:
             break
 print(len(ls))
-print(ls)
