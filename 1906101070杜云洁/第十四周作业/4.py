@@ -7,7 +7,7 @@ for i in c:
         a -=i
         c2.append(i)
         c2.append('+')
-del c2[-1]
+c2.pop(-1)
 print(b,'=',end='')
 for d in c2:
     print(d,end='')
