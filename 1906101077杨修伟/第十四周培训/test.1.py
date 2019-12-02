@@ -1,0 +1,5 @@
+n = map(int,input().split())
+L =set(n)
+L =list(L)
+a = len(L)
+print("%d        %s" %(a,L))

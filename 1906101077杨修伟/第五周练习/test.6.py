@@ -1,0 +1,6 @@
+f1,b,c,f2=map(str,input().split())
+f1 = float(f1)
+b = int(b)
+c = str(c)
+f2 = float(f2)
+print("%c %d %.2f %.2f"%(c,b,f1,f2))
