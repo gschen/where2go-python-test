@@ -1,1 +1,7 @@
-N=input("请输入正整数N=")
+N=21
+a=1
+b=2
+c=5
+d=11
+if N==(c+c+d):
+    print(c,c,d)
