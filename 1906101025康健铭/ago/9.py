@@ -1,0 +1,10 @@
+if(x>y):
+    print(y)
+    max=x
+else
+print(x)
+max=y
+if(max>z):
+    print(z)
+else
+print(max)
