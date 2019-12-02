@@ -13,44 +13,54 @@ A 和 B 在一个 3 x 3 的网格上玩井字棋。
 你可以假设 moves 都 有效（遵循井字棋规则），网格最初是空的，A 将先行动。
 '''
 def ABmove(moves):
-    lis1 = [' ' for x in range(9)]
-    n = 0
+    lis1 = [' ' for x in range(9)]          # 这里生成一个长度为9的列表，便于后面存放‘X’,‘O’。
+    # 注意不要产生会混淆判断的元素，我这里用‘1’代表‘X’，用‘0’代表‘O’，所以我直接生成一个全是空格的列表。
+    n = 0           # 这里用于计数，A和B是一人一步，利用奇偶数除2取余是否等于0便可以判断哪步是A哪步是B
     for i in moves:
         for j in i[0:1]:
             if n % 2 == 0:
-                lis1[j * 3 + i[1]] = 1
+                lis1[j * 3 + i[1]] = 1          # A的记为‘1’
             else:
-                lis1[j * 3 + i[1]] = 0
+                lis1[j * 3 + i[1]] = 0          # B的记为‘0’
             n += 1
     for q in range(3):
-        if lis1[q*3] == lis1[1+q*3] == 1 and lis1[1+q*3] == lis1[2+q*3] == 1:
+        if lis1[q*3] == lis1[1+q*3] == lis1[2+q*3] == 1:
+            # 判断A是否横向连成一条线
             print('A')
             break
-        elif lis1[q*3] == lis1[1+q*3] == 0 and lis1[1+q*3] == lis1[2+q*3] == 0:
+        elif lis1[q*3] == lis1[1+q*3] == lis1[2+q*3] == 0:
+            # 判断B是否横向连成一条线
             print('B')
             break
-        elif lis1[q] == lis1[q+3] == 1 and lis1[q+6] == lis1[q+3] == 1:
+        elif lis1[q] == lis1[q+3] == lis1[q+6] == 1:
+            # 判断A是否纵向连成一条线
             print('A')
             break
-        elif lis1[q] == lis1[q+3] == 0 and lis1[q+6] == lis1[q+3] == 0:
+        elif lis1[q] == lis1[q+3] == lis1[q+6] == 0:
+            # 判断B是否纵向连成一条线
             print('B')
             break
-        elif lis1[0] == lis1[4] == 1 and lis1[4] == lis1[8] == 1:
+        elif lis1[0] == lis1[4] == lis1[8] == 1:
+            # 判断A是否↘连成一条线
             print('A')
             break
-        elif lis1[2] == lis1[4] == 1 and lis1[4] == lis1[6] == 1:
+        elif lis1[2] == lis1[4] == lis1[6] == 1:
+            # 判断A是否↖连成一条线
             print('A')
             break
-        elif lis1[0] == lis1[4] == 0 and lis1[4] == lis1[8] == 0:
+        elif lis1[0] == lis1[4] == lis1[8] == 0:
+            # 判断B是否↘连成一条线
             print('B')
             break
-        elif lis1[2] == lis1[4] == 0 and lis1[4] == lis1[6] == 0:
+        elif lis1[2] == lis1[4] == lis1[6] == 0:
+            # 判断B是否↖连成一条线
             print('B')
             break
     else:
         if lis1.count(' ') == 0:
+            # 没空格就是被填满了，也就是棋盘下完了，反之就是没下完
             print('Draw')
         else:
             print('Pending')
 
-ABmove([[0,0],[2,0],[1,1],[2,1],[2,2]])
+ABmove([[0,0],[1,1],[2,0],[1,0],[1,2],[2,1],[0,1],[0,2],[2,2]])
