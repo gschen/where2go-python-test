@@ -1,7 +1,7 @@
 a=int(input())
 b=a
 c=[11,5,2,1]
-c2= []
+c2=[]
 for i in c:
     while a >=i:
         a -=i
