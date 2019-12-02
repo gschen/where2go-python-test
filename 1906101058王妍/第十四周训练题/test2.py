@@ -1,8 +1,9 @@
-ls=[1,1,1,2,3,4,4,4]
-for a in range(len(ls)-1):
-    for b in ls[a+1:]:
-        if ls[a]==b:
-            ls.remove(ls[a])
-        else:
-            break
-print(len(ls))
+z = 0
+for a in range(1,10):
+    for b in range(1,10):
+        for c in range(1, 10):
+            for d in range(1, 10):
+                for e in range(1, 10):
+                    if (a*10+b)*(c*100+d*10+e) == (a*100+d*10+b)*(c*10+e) and a!=b and a!=c and a!=d and a!=e and b!=c and b!=d and b!=e and c!=d and c!=e and d!=e:
+                        z+=1
+print(x)
