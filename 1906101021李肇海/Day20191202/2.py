@@ -9,3 +9,5 @@ for a in range(1,10):
                             L.append(a*10000+b*1000+c*100+d*10+e)
 print(L)
 print(len(L))
+
+
