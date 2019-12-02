@@ -1,8 +1,9 @@
-x = 0
-for a in range(1,10):
-    for b in range(1,10):
-        for c in range(1,10):
-            for d in range(1,10):
-                for e in range(1,10):
-                    if (a*10+b)*(c*100+d*10+e) == (a*100+d*10+b)*(c*10+e) and a!=b and a!=c and a!=d and a!=e and b!=c and b!=d and b!=e and c!=d and c!=e and d!=e:
-                        x = x+1
+Ls=[1,1,1,2,3,4,4,4]
+for x in range(len(Ls)-1):
+    for y in Ls[x+1: ]:
+        if Ls[x] == y:
+            Ls.remove(Ls[x])
+        else:
+            break
+print(len(Ls))
+print(Ls)
