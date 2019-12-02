@@ -164,10 +164,8 @@ def CANNY(img_path):
 
     kernel1 = np.ones((3 * 1), np.uint8)
     dilata = cv.dilate(DT, kernel1, iterations=1)
-    kernel2=np.ones((3*3),np.uint8)
-    liantong_img = cv.morphologyEx(dilata,cv.MORPH_CLOSE,kernel2)
     cv.imshow("dilate_img", dilata)
-    cv.imshow("deal_img",liantong_img)
+
     cv.waitKey(0)
     cv.destroyAllWindows()
 
