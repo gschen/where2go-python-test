@@ -5,3 +5,4 @@ for s in range(1,100001):
     if n==m:
         print(s)
 
+
