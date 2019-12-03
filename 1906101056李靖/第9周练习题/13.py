@@ -1,4 +1,4 @@
-n=(input('请输入一个5位数：'))
+
 l=list(n)
 a=int(l[0])
 b=int(l[1])
