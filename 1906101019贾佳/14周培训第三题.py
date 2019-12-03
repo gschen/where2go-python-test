@@ -6,3 +6,5 @@ for i in range(c):
     sum=a/b+sum
     a,b=(a+b),a
 print(sum)
+
+
