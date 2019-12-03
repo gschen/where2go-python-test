@@ -30,3 +30,10 @@ for i in l:
                                             if nn==nnn:
                                                 L.append(n)
 print(L)
+
+
+#第二种方法：
+
+for i in range(1,100000):
+    if i==int(str(i)[::-1]):
+        print(i)
