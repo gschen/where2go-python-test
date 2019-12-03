@@ -9,9 +9,6 @@ for i in range(20):
     x, y= (x+ y), x
 print(sum)
 
-
-
-
 def sums(n,a=2,b=1,sum=0):
     sum=sum+(a+b)/a
     if n==19:
