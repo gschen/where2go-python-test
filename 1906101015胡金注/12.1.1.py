@@ -1,6 +1,6 @@
-a = map(int,input().split())
-b =set(a)
-c =list(b)
-d = len(c)
-print("%d        %s" %(d,c))
+z = map(int,input().split())
+x =set(z)
+c =list(x)
+v = len(c)
+print("%d  5 %s" %(v,c))
 
