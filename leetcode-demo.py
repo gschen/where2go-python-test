@@ -1,7 +1,6 @@
 '''
 给你一个 m * n 的矩阵，矩阵中的元素不是 0 就是 1，请你统计并返回其中完全由 1 组成的 正方形 子矩阵的个数。
 
-
 示例 1：
 
 输入：matrix =
@@ -57,7 +56,7 @@ class SolutionTest(unittest.TestCase):
                         [1,1,1,1],
                         [0,1,1,1]
                     ]
-        self.assertEqual(self.solution.countSquares(matrix))      
+        self.assertEqual(self.solution.countSquares(matrix),15)
         
 
 if __name__ == '__main__':
