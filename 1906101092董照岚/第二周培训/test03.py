@@ -12,4 +12,7 @@ print(sum)
 def sums(n,a=2,b=1,sum=0):
     sum=sum+(a+b)/a
     if n==19:
-        return sums(n+1,)
+        return sums(n+1,a+b,a,sum)
+    if n==19:
+        return sum
+print(sums(1,2,1,2))
