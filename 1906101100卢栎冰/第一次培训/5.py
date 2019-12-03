@@ -5,3 +5,6 @@ for i in range(1,100001):
         count += 1
         print(i)
 print(count)
+
+
+
