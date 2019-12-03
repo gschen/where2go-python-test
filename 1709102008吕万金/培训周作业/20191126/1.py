@@ -9,3 +9,6 @@ y=list(map(int,input().split()))
 s=set(y)
 s2=list(s)
 print(len(s2),s2,end=' ')
+
+# lis=list(set(eval(input())))
+# print(len(lis),lis)
