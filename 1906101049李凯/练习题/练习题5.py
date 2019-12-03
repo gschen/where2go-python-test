@@ -17,3 +17,7 @@ for i in range(10000, 100000):
     d = str(i)
     if d[0] == d[-1] and d[1]==d[-2] and d[2]==d[-3]:
         print(d)
+#way2
+for i in range(1,100000):
+    if i==int(str(i)[::-1]):
+        print(i)
