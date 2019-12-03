@@ -1,5 +1,4 @@
 # coding=utf-8
-
 1,2,5,11
 x=int(input('请输入一个你比较喜欢的正整数：'))
 print()
