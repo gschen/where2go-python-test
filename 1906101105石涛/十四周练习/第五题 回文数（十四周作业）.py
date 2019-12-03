@@ -14,15 +14,15 @@ for i in l:
         # print(ii)
         for iii in i[0][-1]:
             # print(iii)
-            if ii==iii and len([x for x in str(' '.join(i))])<=2:
+            if ii==iii and len([x for x in ' '.join(i)])<=2:
                 L.append(i)
-            elif ii==iii and len([x for x in str(' '.join(i))])>=3:
+            elif ii==iii and len([x for x in ' '.join(i)])>=3:
                 for m in [i]:
                     for mm in m[0][1]:
                         for mmm in m[0][-2]:
-                            if mm==mmm and len([x for x in str(' '.join(m))])<=5:
+                            if mm==mmm and len([x for x in ' '.join(m)])<=5:
                                 L.append(m)
-                            elif mm==mmm and len([x for x in str(' '.join(m))])>=6:
+                            elif mm==mmm and len([x for x in ' '.join(m)])>=6:
                                 for n in [m]:
                                     for nn in m[0][2]:
                                         for nnn in m[0][-3]:
