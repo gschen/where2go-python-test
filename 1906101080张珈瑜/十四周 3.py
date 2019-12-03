@@ -1,9 +1,10 @@
+n=int(input())
 a=2
 b=1
-s=n=0
-while n<20:
-    c=a+b
-    s=s+a/b
-    a,b=c,a
-    n+=1
-print(s)
+
+sum=0
+for i in range(n):
+    c=a/b
+    sum=sum+c
+    a,b=a+b,a
+print(sum)
