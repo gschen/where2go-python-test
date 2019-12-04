@@ -14,7 +14,6 @@ def shanchu(s):
             s.pop(i)
             s.pop(i)
             return shanchu(s)
-
 s = list(input())
 shanchu(s)
 if len(s) == 0:

@@ -1,1 +1,0 @@
-print("ST-onr")
