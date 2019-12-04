@@ -9,14 +9,14 @@ for i in l:
             s.append(i)
         if L==8:
             int('i',2)
-            s.append(int(oct(i))[2:]))
+            s.append(int(oct(i)[2:]))
         if L==10:
             int('i',2)
             s.append(i)
     if M==8:
         if L==2:
             int('i',8)
-            s.append(int(bin(i))[2:]))
+            s.append(int(bin(i)[2:]))
         if L==8:
             s.append(i)
         if L==10:
