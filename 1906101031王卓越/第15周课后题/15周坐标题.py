@@ -15,7 +15,7 @@ def raw(l,n,q,k):
         elif q==len(l)-1 :
             return k
     return k
-l=eval(input('请输入：')
+l=eval(input('请输入：'))
 n=0
 q=1
 k=0
