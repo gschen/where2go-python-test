@@ -1,4 +1,4 @@
-#创建一个docx文档，并编辑标题，字体，颜色，对齐格式
+#创建一个docx文档，并编辑标题，字体，颜色，对齐格式。
 from docx import Document
 from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
