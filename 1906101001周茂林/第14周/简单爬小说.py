@@ -17,3 +17,4 @@ for i in chapter_list:
     chapter_content = re.findall(r'<div id="content">.*?<p>', chapter_html, re.S)[0]
     print(chapter_content)
     exit()
+ 
