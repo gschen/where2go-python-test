@@ -1,4 +1,4 @@
-#时间装饰器。
+#时间装饰器
 import functools
 import datetime
 def log(func):
