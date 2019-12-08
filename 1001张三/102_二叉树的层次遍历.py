@@ -1,4 +1,5 @@
-# https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/
+# https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
+
 from typing import *
 import unittest
 
@@ -35,7 +36,7 @@ class Solution:
                 if node.right != None:
                     queue.append(node.right)
 
-            result.insert(0, level_all)
+            result.append(level_all)
 
         return result
 
@@ -49,9 +50,9 @@ class Test(unittest.TestCase):
         n20.left, n20.right = n15, n7
 
         self.assertEqual(Solution().levelOrderBottom(n3), [
-            [15, 7],
+            [3],
             [9, 20],
-            [3]
+            [15, 7]
         ])
 
 
