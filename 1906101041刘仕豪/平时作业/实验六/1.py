@@ -6,4 +6,4 @@ L = list(filter(is_even, range(1, 20)))
 '''
 
 L = list(filter(lambda n:n%2==1,range(1, 20)))
-print(L)
+print(L)   #刘仕豪 1906101041

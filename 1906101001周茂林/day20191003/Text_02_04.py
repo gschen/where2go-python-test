@@ -1,8 +1,5 @@
-a,n = map(int,input().split())
-i = 1
+a, n = input().split()
 s = 0
-while i <= n:
-    b = int(i * str(a))
-    s +=b
-    i = i+1
+for i in range(1, int(n)+1):
+    s += int(a*i)
 print(s)
