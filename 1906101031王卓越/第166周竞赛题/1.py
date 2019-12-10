@@ -1,4 +1,4 @@
-from functools import*
+from functools import *
 def raw(x,y):
     return x*y
 def jkl(x,y):
