@@ -11,4 +11,4 @@ import numpy as np
 c = np.mat(np.arange(9).reshape(3,3))
 print(c)
 #(1)  np.matlip库可以产生矩阵
-#(2)  重新确定数组形状
+#(2)  重新确定数组形状 1906101041刘仕豪

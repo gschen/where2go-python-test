@@ -11,7 +11,11 @@ def fn_sum(n):
     1-n的和.
     '''
     # 实现此处代码。
-    return 0
+    sum = 0
+    for i in range(n+1):
+        sum += i
+
+    return sum
 
 
 class Test(unittest.TestCase):

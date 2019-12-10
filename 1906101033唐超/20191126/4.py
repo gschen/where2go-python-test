@@ -12,6 +12,5 @@ def Ta(x):
         print(1)
         return Ta(x-1)
 
-
 x=int(input())
 Ta(x)
