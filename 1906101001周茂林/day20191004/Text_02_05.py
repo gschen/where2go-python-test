@@ -1,8 +1,2 @@
-n = float(input())
-x = 1
-s = 0
-while x <= n:
-    y = 1/x
-    s += y
-    x += 2
-print(round(s,6))
+lis = [1/(2*x+1) for x in range(int(input()))]
+print(round(sum(lis), 6))
