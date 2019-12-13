@@ -23,14 +23,12 @@ lis = sorted(list(map(int, input().split())))
 lis2 = []
 for i in range(len(lis)-1):
     lis2.append(lis[i+1] - lis[i])
-for j in range(2, min(lis2)+1):
+for j in range(min(lis2)+1, 0, -1):
     for p in lis2:
         if p % j != 0:
             break
     else:
         d = j
         break
-else:
-    d = 1
 lis3 = list(x for x in range(min(lis), max(lis)+1, d))
 print(len(lis3))
