@@ -8,18 +8,19 @@ def reply_msg(msg):
         url = "http://api.qingyunke.com/api.php?key=free&appid=0&msg="
         url = url+msg.text
         res = requests.get(url)
-        print(url)
+        #print(url)
         data = res.json()
         data_content = data['content']
-        print(data_content)
+        #print(data_content)
         itchat.send_msg(data_content,msg['FromUserName'])
+        itchat.send_msg("自动回复",msg['FromUserName'])
     if msg['Content'] == u'你好':
         itchat.send_msg(msg['User']['RemarkName']+'你好啊',msg['FromUserName'])
-        print(msg['User'])
-        print(msg['User']['RemarkName'])
-        print(msg['FromUserName'])
+        #print(msg['User'])
+        #print(msg['User']['RemarkName'])
+        #print(msg['FromUserName'])
     print("收到一条消息:", msg.text)
-    print(type(msg.text))
+    #print(type(msg.text))
 
 
 def after_login():
