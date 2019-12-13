@@ -10,8 +10,8 @@ app = Flask(__name__)
 def index():
     url = "http://api.qingyunke.com/api.php?key=free&appid=0&msg="
     get_data = request.args.to_dict()
-    print(get_data)
     content = get_data.get('content')
+    content = str(content)
     url = url + content
     res = requests.get(url)
     data = res.json()
@@ -19,12 +19,8 @@ def index():
     return render_template("index.html", data_content=data_content)
 
 
-@app.route("/app", methods=['GET'])
-def getJson():
-    get_data = request.args.to_dict()
-    content = get_data.get('content')
-    return json.dumps(content, ensure_ascii=False)
+
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8000)
