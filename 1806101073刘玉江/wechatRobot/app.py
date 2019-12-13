@@ -17,7 +17,8 @@ def text_reply(msg):
     # 当消息不是由自己发出的时候
     if not msg['FromUserName'] == Name["a595"]:
         # 回复给好友
-        url = "http://www.tuling123.com/openapi/api?key=206c15a5daa743bd97684c2b368389c8&info="
+        # url = "http://www.tuling123.com/openapi/api?key=206c15a5daa743bd97684c2b368389c8&info="
+        url = "http://api.qingyunke.com/api.php?key=free&appid=0&msg="
         url = url + msg['Text']
         html = getHtmlText(url)
         message = re.findall(r'\"text\"\:\".*?\"', html)
