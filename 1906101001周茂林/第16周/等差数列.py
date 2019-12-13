@@ -30,5 +30,7 @@ for j in range(2, min(lis2)+1):
     else:
         d = j
         break
+else:
+    d = 1
 lis3 = list(x for x in range(min(lis), max(lis)+1, d))
 print(len(lis3))
