@@ -122,6 +122,7 @@ else:
         area = (s*(s-l[0])*(s-l[1])*(s-l[2]))**(1/2)
         print('area = %.2f;  perimeter = %.2f'%(area,perimeter))
 
+#16
 
 
 
@@ -142,28 +143,27 @@ else:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# #89
 # s = list(input().split('.',',',' ','\n','...',':',';'))
 # dic = {}
 # for i in s:
 #     s = s.lower()
 #     s = s[0:15]
 #     if i not in dic:
-#         dic.update(i = 0)
+#         dic.update(i = 1)
 #     if i in dic:
-#
+#         dic.update(i = i.value+1)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
