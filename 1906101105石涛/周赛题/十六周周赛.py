@@ -12,19 +12,36 @@
 #         self.val = x
 #         self.next = None
 
-ListNode=[1,0,1]
-class Solution:
-    def getDecimalValue(self, head:ListNode) -> int:
-        l=[]
-        sum=0
-        while head:
-            if head:
-                l.append(head.val)
-                head=head.next
-        for i in range(len(l)-1,-1,-1):
-            if l[i]==1:
-                sum+=2**(len(l)-i-1)
-        return sum
+# ListNode=[1,0,1]
+# class Solution:
+#     def getDecimalValue(self, head:ListNode) -> int:
+#         l=[]
+#         sum=0
+#         while head:
+#             if head:
+#                 l.append(head.val)
+#                 head=head.next
+#         for i in range(len(l)-1,-1,-1):
+#             if l[i]==1:
+#                 sum+=2**(len(l)-i-1)
+#         return sum
+
+
+class Solution(object):
+    def getDecimalValue(self, x) -> int:
+        y,sum=len(x)-1,0
+        for i in x:
+            if y>=0:
+                sum=sum+i*2**y
+                print(i)
+                # print(sum)
+                # y=y-1
+        # print(sum)
+m=eval(input())
+n=Solution()
+n.getDecimalValue(m)
+
+
 
 # no.2
 '''我们定义「顺次数」为：每一位上的数字都比前一位上的数字大 1 的整数。
