@@ -26,7 +26,7 @@
 #                 sum+=2**(len(l)-i-1)
 #         return sum
 
-
+#mine
 class Solution(object):
     def getDecimalValue(self, x) -> int:
         y,sum=len(x)-1,0
