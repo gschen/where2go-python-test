@@ -1,6 +1,3 @@
-m,n = map(int,input().split())
-sum = 0
-while m <= n:
-    sum += m**2 + 1/m
-    m += 1
-print(round(sum,6))
+m, n = map(int, input().split())
+lis = [x**2 + 1/x for x in range(m, n+1)]
+print(round(sum(lis), 6))
