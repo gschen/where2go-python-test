@@ -1,4 +1,4 @@
-import random
+﻿import random
 import pygame
 
 PANEL_width = 1800
@@ -21,11 +21,11 @@ bg_suface.fill(pygame.Color(0, 0, 0, 28))
 winSur.fill((0, 0, 0))
 
 # 数字版
-texts = [font.render(str(i), True, (0, 255, 0)) for i in range(10)]
+#texts = [font.render(str(i), True, (0, 255, 0)) for i in range(10)]
 
 # 字母版
-#letter = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c','v', 'b', 'n', 'm']
-#texts = [font.render(str(letter[i]), True, (0, 255, 0)) for i in range(26)]
+letter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v','w', 'x', 'y', 'z']
+texts = [font.render(str(letter[i]), True, (0, 255, 0)) for i in range(26)]
 
 # 按屏幕的宽带计算可以在画板上放几列坐标并生成一个列表
 column = int(PANEL_width / FONT_PX)
