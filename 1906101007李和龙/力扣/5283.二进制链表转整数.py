@@ -37,3 +37,5 @@ def getDecimalValue(head):
             list1.append(i)
     new_list = "".join(list1)
     return int(new_list,2)
+
+
