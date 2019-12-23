@@ -17,6 +17,6 @@ def fun(m,n):
             if i%2==1:
                 sum+=30
             if i%2==0:
-                sum+=31
+                sum+=31#
     return sum
 print(fun(5,4))
