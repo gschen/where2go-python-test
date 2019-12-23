@@ -5,7 +5,7 @@ response = requests.get(url)
 response.encoding = 'utf-8'
 html = response.text
 title = re.findall(r'<meta property="og:title" content="(.*?)"/>', html)[0]
-# find = open('%s.txt' % title, 'w' , encoding='utf-8')
+find = open('%s.txt' % title, 'w' , encoding='utf-8')
 chapter = re.findall(r'<div id="list">.*?</dl>', html, re.S)[0]
 chapter_list = re.findall(r'href=\'(.*?)\' >(.*?)<', chapter)
 for i in chapter_list:
@@ -16,5 +16,3 @@ for i in chapter_list:
     chapter_html = chapter_response.text
     chapter_content = re.findall(r'<div id="content">.*?<p>', chapter_html, re.S)[0]
     print(chapter_content)
-    exit()
- 
