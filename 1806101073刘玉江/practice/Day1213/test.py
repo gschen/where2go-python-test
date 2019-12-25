@@ -12,8 +12,7 @@ def reply_msg(msg):
         data = res.json()
         data_content = data['content']
         #print(data_content)
-        itchat.send_msg(data_content,msg['FromUserName'])
-        itchat.send_msg("自动回复",msg['FromUserName'])
+        itchat.send_msg(data_content+"-------自动回复-------",msg['FromUserName'])
     if msg['Content'] == u'你好':
         itchat.send_msg(msg['User']['RemarkName']+'你好啊',msg['FromUserName'])
         #print(msg['User'])
