@@ -25,14 +25,15 @@
 显然答案是一个小数，其小数点后有100位数字
 '''
 from decimal import *
+
 getcontext().prec = 102
+
 
 def aaa(n, m):
     if m == 0:
         return round(n, 100)
     else:
         return Decimal(1 / (1 + aaa(n, m-1)))
-
 
 
 n, m = 1, 100
