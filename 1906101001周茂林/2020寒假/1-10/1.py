@@ -8,7 +8,7 @@
     请回答该年份（只写这个4位整数，不要写12月31等多余信息）
 '''
 n = 5
-for i in range(2099, 9999, 100):
+for i in range(2000, 9999):
     if i % 4 == 0 and i % 100 != 0:
         n += 366
     elif i % 4 == 0 and i % 400 == 0:
@@ -16,6 +16,6 @@ for i in range(2099, 9999, 100):
     else:
         n += 365
     n %= 7
-    if n == 0:
+    if n == 0 and (i-1999) % 100 == 0:
         print(i)
         break
