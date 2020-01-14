@@ -17,6 +17,7 @@ for i in range(1,21):
                 if 1/i+1/j+1/k+1/l==1:
                     print(i,j,k,l,0)
 
+
 #>>>>>>>>>>方法二
 for n in range(1,21):
     for a in range(1,20):

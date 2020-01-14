@@ -63,7 +63,6 @@ for i in name_list:
     print(num_sum(a)+num_sum(b)+num_sum(c)+num_sum(d)+num_sum(e)+num_sum(f),end='\n')
 
 
-
 #>>>>>>>>>>方法二
 def suowei(n):
     sum = 0

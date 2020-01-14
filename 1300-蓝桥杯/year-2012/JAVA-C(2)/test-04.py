@@ -31,7 +31,6 @@ for i in kuohao_str:
 print(len(l)==0)
 
 
-
 #>>>>>>>>>方法二
 a = input()
 zuo = ['(','[','{','<']

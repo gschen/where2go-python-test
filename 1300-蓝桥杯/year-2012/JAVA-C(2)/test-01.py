@@ -32,6 +32,7 @@ s = '123456789'
 # print(s[s.find(str(4))])
 fun(s,1)
 
+
 #>>>>>>>>>>>方法二
 lis = ['','+','-']
 for aa in lis:

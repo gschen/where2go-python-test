@@ -50,6 +50,7 @@ for i in num_list:
     print(test_4(i)+test_3(i)+test_2(i)+test_1(i),end='\n')
 
 
+
 #>>>>>>>>>方法二
 #定义判断连号的函数
 def lianhao(s):

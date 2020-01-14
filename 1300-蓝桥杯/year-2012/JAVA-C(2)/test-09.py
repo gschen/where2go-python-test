@@ -16,6 +16,7 @@ for i in range(1900,2012):
             print(number)
 
 
+
 #>>>>>>>>>>>方法二
 for i in range(1912,2012):
     for j in range(1,31):
