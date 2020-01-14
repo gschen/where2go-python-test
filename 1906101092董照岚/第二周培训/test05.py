@@ -8,3 +8,7 @@ for i in range(1,100001):
         count += 1
         print(i)
 print(count)
+
+for i in range(1,100000):
+    if i==int(str(i)[::-1]):#i从前往后读 str（）转换为字符串  int（str（i）[::-1]）:是从后往前读
+       print(i)
