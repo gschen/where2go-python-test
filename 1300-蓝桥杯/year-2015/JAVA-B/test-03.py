@@ -17,3 +17,24 @@ for i in range(0,10):
                         for o in range(0,10):
                             if i*1000+j*100+k*10+l+m*1000+n*100+o*10+j==m*10000+n*1000+k*100+j*10+(l+j)//10:
                                 print(m,n,o,j)
+
+
+
+# 第二种方法
+'''
+for it in range(1000,2000):
+    for i in range(9000,10000):
+        m=i+it
+
+        m1,m2,m3,m4,m5=m//10000,m//1000-m//10000*10,m//100-m//1000*10,m//10-m//100*10,m%10
+        it1,it2,it3,it4=it//1000,it//100-it//1000*10,it//10-it//100*10,it%10
+        i1,i2,i3,i4=i//1000,i//100-i//1000*10,i//10-i//100*10,i%10
+        #或下面这种命名方式
+        # m1,m2,m3,m4,m5=int(str(m)[0]),int(str(m)[1]),int(str(m)[2]),int(str(m)[3]),int(str(m)[4])
+        # it1,it2,it3,it4=int(str(it)[0]),int(str(it)[1]),int(str(it)[2]),int(str(it)[3])
+        # i1,i2,i3,i4=int(str(i)[0]),int(str(i)[1]),int(str(i)[2]),int(str(i)[3])
+
+        l=set([m1,m2,m3,m4,m5,it1,it2,it3,it4,i1,i2,i3,i4])
+        if m1==it1 and m2==it2 and m3==i3 and m4==it4 and m4==i2 and len(l)==8:
+            print(it)
+'''
