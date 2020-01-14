@@ -8,12 +8,25 @@
 	   5
 	   5
 '''
-num=int(input())
-l1=[11,5,2,1]
-l2=[]
-for i in l1:
-    while num>=i:
-        num-=i
-        l2.append(i)
-for ccc in l2:
-    print(ccc)
+# num=int(input())
+# l1=[11,5,2,1]
+# l2=[]
+# for i in l1:
+#     while num>=i:
+#         num-=i
+#         l2.append(i)
+# for ccc in l2:
+#     print(ccc)
+
+x=int(input())
+while x>=11:
+    x-=11
+    print(11)
+while x>=5:
+    x-=5
+    print(5)
+while x>=2:
+    x-=2
+    print(2)
+if x==1:
+    print(1)
