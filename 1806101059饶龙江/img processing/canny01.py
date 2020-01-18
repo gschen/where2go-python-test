@@ -2,15 +2,80 @@ import cv2 as cv
 import  numpy as np
 import math
 
+
+def find_retangle(contour):
+    y, x = [], []
+
+    for p in contour:
+        y.append(p[0][0])
+        x.append(p[0][1])
+
+    return [min(y), min(x), max(y), max(x)]
+
+
+def locate_license(img, orgimg):
+    img, contours, hierachy = cv.findContours(img, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_NONE)
+
+    # 找到最大的三个区域
+    blocks = []
+    for c in contours:
+        # 找出轮廓的左上和右下点，计算出其面积和长宽比
+        r = find_retangle(c)
+        a = (r[2] - r[0]) * (r[3] - r[1])
+        s = (r[2] - r[0]) / (r[3] - r[1])
+
+        blocks.append([r, a, s])
+
+    # 选出面积最大的3个区域
+    blocks = sorted(blocks, key=lambda b: b[2])[-3:]
+
+    # 使用颜色识别判断出最像车牌的区域
+    maxweight, maxinedx = 0, -1
+
+    for i in range(len(blocks)):
+        b = orgimg[blocks[i][0][1]:blocks[i][0][3], blocks[i][0][0]:blocks[i][0][2]]
+        # RGB 转HSV
+        hsv = cv.cvtColor(b, cv.COLOR_BGR2HSV)
+
+        # 蓝色车牌范围
+        lower = np.array([100, 50, 50])
+        upper = np.array([140, 255, 255])
+
+        # 根据阈值构建掩膜
+        mask = cv.inRange(hsv, lower, upper)
+
+        # 统计权值
+        w1 = 0
+        for m in mask:
+            w1 += m / 255
+
+        w2 = 0
+        for w in w1:
+            w2 += w
+
+        # 选出最大权值的区域
+        if w2 > maxweight:
+            maxindex = i
+            maxweight = w2
+
+    return blocks[maxindex][0]
+
 def CANNY(img_path):
     # 读取图片
     img = cv.imread(img_path)
-    print(img.shape)
+    print('-----',img.shape)
+    print(img[1][2])
     # BGR 转换成 RGB 格式
     img_rgb = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     # 灰度化
     img_gray = np.dot(img_rgb[..., :3], [0.299, 0.587, 0.114])
     #高斯滤波器
+    #二值化
+    max = float(img.max())
+    min = float(img.min())
+
+    x = max - ((max - min) / 2)
+    ret,img_gray = cv.threshold(img_gray, x, 255, cv.THRESH_BINARY)
     sigma1 = sigma2 = 1#设置方差
     gau_sum = 0
     gaussian = np.zeros([5, 5])
@@ -21,7 +86,6 @@ def CANNY(img_path):
             gau_sum = gau_sum + gaussian[i, j]
     # 归一化处理
     gaussian = gaussian / gau_sum
-    print(gaussian)
     # 高斯滤波
     W, H = img_gray.shape
     new_gray = np.zeros([W - 5, H - 5])
@@ -162,11 +226,66 @@ def CANNY(img_path):
             elif (NMS[i - 1, j - 1:j + 1] < TH).any() or (NMS[i + 1, j - 1:j + 1].any() or (NMS[i, [j - 1, j + 1]] < TH).any()):
                 DT[i, j] = 255
 
-    kernel1 = np.ones((3 * 1), np.uint8)
-    dilata = cv.dilate(DT, kernel1, iterations=1)
-    cv.imshow("dilate_img", dilata)
-
+    kernel = np.ones((5, 20), np.uint8)
+    closingimg = cv.morphologyEx(DT, cv.MORPH_CLOSE, kernel)
+    cv.imshow('closingimg', closingimg)
     cv.waitKey(0)
     cv.destroyAllWindows()
 
-CANNY("imgs/fire/t0000.jpg")
+    # 进行开运算
+    openingimg = cv.morphologyEx(closingimg, cv.MORPH_OPEN, kernel)
+    cv.imshow('openingimg', openingimg)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+
+    # 再次进行开运算
+    kernel = np.ones((11, 5), np.uint8)
+    openingimg = cv.morphologyEx(openingimg, cv.MORPH_OPEN, kernel)
+    cv.imshow('openingimg', openingimg)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+    print(DT[1][2])
+    print('-------',openingimg.shape)
+
+    rect = locate_license(openingimg, img)
+    return rect, img
+    #通过轮廓和颜色判断车牌区域,想法：通过颜色特征结合轮廓特征找到车牌区域。
+    '''
+    lower = np.array([100, 50, 50])
+    upper = np.array([140, 255, 255])
+    lis1=[]
+    lis2=[]
+    for i in range(len(openingimg)):
+        for j in range(len(openingimg[i])):
+            if 100<img[i][j][0]<140 and 50<img[i][j][1]<255 and 50<img[i][j][0]<255 and openingimg[i][j]==255:
+                lis1.append(i)
+                lis2.append(j)
+    print("------", lis1)
+    print("------", lis2)
+    chepaiquyu=img[lis1[0]:lis1[-1],lis2[0]:lis2[-1]]
+    cv.imshow("----",chepaiquyu)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+    '''
+
+
+
+
+
+
+
+
+    '''
+    #寻找轮廓
+    image, contours, hierarchy = cv.findContours(openingimg, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+    cv.imshow('imageshow', image)
+    #绘制轮廓
+    contours_img = cv.drawContours(openingimg, contours, -1, (0, 255, 0),5)  # img为三通道才能显示轮廓
+    cv.imshow('drawimg', contours_img)
+    cv.waitKey(0)
+    cv.destroyAllWindows()
+    '''
+
+
+CANNY("imgs/fire/t00001.jpg")
+
