@@ -10,3 +10,4 @@ while year%100 != 99 or week != 7:
     year += 1
 print(year)
 
+

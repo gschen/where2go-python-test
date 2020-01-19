@@ -8,7 +8,7 @@ for a,o in zip(l[1:],l1[1:]):
             for d,r in zip(l,l1):
                 if (int(a+b+c+d)-int(r+q+p+o))//100 == 2:
                     l2.append((a+b+c+d,r+q+p+o))
-                if (int(r+q+p+o)-int(a+b+c+d))//100 == 8:
+                if (int(r+q+p+o) -int(a+b+c+d))//100 == 8:
                     l3.append((a+b+c+d,r+q+p+o))
 for x in l2:
     for y in l3:
