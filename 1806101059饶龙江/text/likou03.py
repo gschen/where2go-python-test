@@ -5,7 +5,7 @@ class Solution:
         for i in range(len(searchWord)):
             li = []
             for j in range(len(products)):
-                if j <len(products) and i<len(products[j]) and searchWord[i]==products[j][i]:
+                if   i<len(products[j]) and searchWord[i]==products[j][i]:
                     li.append(products[j])
             l.append(li)
         print(l)
