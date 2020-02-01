@@ -92,7 +92,10 @@ $ 1+2+\cdots+100=\frac{1+100}{2}*100$
         \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
         \node (pro2a) [process, below of=dec1, yshift=-1.5cm] {Process 2a long long long text long long long text};
         \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
-        \node (out1) [io, below of=pro2a, yshift=-1.5cm] {Output};
+        \node (pro3a)[process, left of=pro2a, yshift=-4cm, xshift=-2cm]{Process 3a};
+        \node (pro3b)[process, below of=pro2a, yshift=-2cm]{Process 3b};
+        \node (pro3c)[process, right of=pro2a,  yshift=-4cm, xshift=2cm]{Process 3c};
+        \node (out1) [io, below of=pro3b, yshift=-1.5cm] {Output};
         \node (stop) [startstop, below of=out1] {Stop};
 
         % 第二步画线
@@ -102,12 +105,112 @@ $ 1+2+\cdots+100=\frac{1+100}{2}*100$
         \draw [arrow] (dec1) -- node[anchor=east]{yes} (pro2a);
         \draw [arrow] (dec1) -- node[anchor=south]{no} (pro2b);
         \draw [arrow] (pro2b) |- (pro1); %折线画法
-        \draw [arrow] (pro2a) -- (out1);
+        \draw [arrow] (pro2a) -| (pro3a);
+        \draw [arrow] (pro2a) -- (pro3b);
+        \draw [arrow] (pro2a) -| (pro3c);
+        \draw [arrow] (pro3a) |- (out1);
+        \draw [arrow] (pro3b) -- (out1);
+        \draw [arrow] (pro3c) |- (out1);
         \draw [arrow] (out1) -- (stop);
     \end{tikzpicture}
     \caption{算法流程图}
 \end{figure}
 
+%定义形状样式
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 3cm, minimum height = 0.7cm, text centered, draw = black]
+\tikzstyle{startstop2} = [rectangle, rounded corners, minimum width = 13cm, minimum height = 0.7cm, text centered, draw = black]
+\tikzstyle{io} = [trapezium, trapezium left angle = 30, trapezium right angle = 150, minimum width = 3cm, text centered, draw = black, fill = white]
+\tikzstyle{io2} = [trapezium, trapezium left angle = 30, trapezium right angle = 150, minimum width = 2.5cm, draw = black, fill = white]
+\tikzstyle{io3} = [trapezium, trapezium left angle = 30, trapezium right angle = 150, minimum width = 2cm, draw = black, fill = white]
+\tikzstyle{process} = [rectangle, minimum width = 3cm, minimum height = 1cm, text centered, draw = black]
+\tikzstyle{decision} = [diamond, minimum width = 3cm, minimum height = 1cm, text centered, draw = black]
+\tikzstyle{arrow} = [thick, -, >= stealth]
+\tikzstyle{arrow2} = [thick, ->, >= stealth]
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[node distance = 1.5cm]
+    % 定义流程图具体形状
+    \coordinate[label = left:{\small 输入图像}](A) at(-1.5, 0);
+    \node(in1) [io] {};
+    \node(pro1) [startstop, below of = in1] {\small 线性滤波};
+    
+    \node(in2 - 2)[io3, below of = pro1, yshift = -0.6cm]{};
+    \node(in3 - 2)[io3, left of = in2 - 2, xshift = -2.5cm]{};
+    \node(in4 - 2)[io3, right of = in2 - 2, xshift = 2.5cm]{};
+    
+    \node(in2 - 1)[io2, below of = pro1, yshift = -0.3cm]{};
+    \node(in3 - 1)[io2, left of = in2 - 1, xshift = -2.5cm]{};
+    \node(in4 - 1)[io2, right of = in2 - 1, xshift = 2.5cm]{};
+    
+    \node(in2) [io, below of = pro1] {\small 颜色};
+    \node(in3)[io, left of = in2, xshift = -2.5cm]{ \small 亮度 };
+    \node(in4)[io, right of = in2, xshift = 2.5cm]{ \small 方向 };
+    
+    \node(in5)[startstop2, below of = in2 - 2]{ \small Center - Surround差异计算及归一化 };
+    
+    \node(in6 - 2)[io3, below of = in5, yshift = -0.6cm]{};
+    \node(in7 - 2)[io3, left of = in6 - 2, xshift = -2.5cm]{};
+    \node(in8 - 2)[io3, right of = in6 - 2, xshift = 2.5cm]{};
+    
+    \node(in6 - 1)[io2, below of = in5, yshift = -0.3cm]{};
+    \node(in7 - 1)[io2, left of = in6 - 1, xshift = -2.5cm]{};
+    \node(in8 - 1)[io2, right of = in6 - 1, xshift = 2.5cm]{};
+    
+    \node(in6) [io, below of = in5] {};
+    \node(in7)[io, left of = in6, xshift = -2.5cm]{};
+    \node(in8)[io, right of = in6, xshift = 2.5cm]{};
+    
+    \coordinate[label = left:{\small 特征图}](B) at(-1, -6.2);
+    \coordinate[label = left:{\small （12张）}](C) at(-1.5, -7.5);
+    \coordinate[label = left:{\small （6张）}](D) at(2.7, -7.5);
+    \coordinate[label = left:{\small （24张）}](E) at(6.7, -7.5);
+    
+    \node(in9)[startstop2, below of = in6 - 2]{ \small 跨尺度合并及归一化 };
+    
+    \node(in10) [io, below of = in9] {};
+    \node(in11)[io, left of = in10, xshift = -2.5cm]{};
+    \node(in12)[io, right of = in10, xshift = 2.5cm]{};
+    
+    \coordinate[label = left:{\small 醒目图}](F) at(-1, -9.5);
+    \node(in13) [startstop, below of = in10] {\small 线性组合};
+    \node(in14) [io, below of = in13] {};
+    \coordinate[label = left:{\small 显著图}](G) at(-1, -13);
+    
+    \node(in15) [startstop, below of = in14] {\small 赢者取全};
+    \coordinate[label = left:{\small 显著位置}]() at(1, -16.1);
+    \coordinate[label = left:{\small 反馈抑制}]() at(4.5, -14.7);
+    
+    %连线
+    \draw[arrow](pro1) -- (in1);
+    \draw[arrow](pro1) -- (in2);
+    \draw[arrow](pro1) -- (in3);
+    \draw[arrow](pro1) -- (in4);
+    \draw[arrow](0, -4.75) -- (in2 - 2);
+    \draw[arrow](-4, -4.75) -- (in3 - 2);
+    \draw[arrow](4, -4.75) -- (in4 - 2);
+    \draw[arrow](0, -5.45) -- (in6);
+    \draw[arrow](-4, -5.45) -- (in7);
+    \draw[arrow](4, -5.45) -- (in8);
+    \draw[arrow](0, -8.35) -- (in6 - 2);
+    \draw[arrow](-4, -8.35) -- (in7 - 2);
+    \draw[arrow](4, -8.35) -- (in8 - 2);
+    \draw[arrow](0, -9.05) -- (in10);
+    \draw[arrow](-4, -9.05) -- (in11);
+    \draw[arrow](4, -9.05) -- (in12);
+    \draw[arrow](in13) -- (in10);
+    \draw[arrow](in13) -- (in11);
+    \draw[arrow](in13) -- (in12);
+    \draw[arrow](in13) -- (in14);
+    \draw[arrow](in14) -- (in15);
+    \draw[arrow](in15) -- (0, -15.8);
+    \draw[arrow](0, -15.4) -- (2.5, -15.4);
+    \draw[arrow](2.5, -14) -- (2.5, -15.4);
+    \draw[arrow2](2.5, -14) -- (0, -14);
+    \end{tikzpicture}
+    \caption{ IT算法流程 }
+\end{figure}
+    
 \section{结语}
 
 
