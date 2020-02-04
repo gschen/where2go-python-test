@@ -18,17 +18,17 @@
 【评测用例规模与约定】 对于 80% 的评测用例，1≤ N,M,T ≤10000。 对于所有评测用例，1≤ N,M,T ≤100000，1≤ts≤T，1≤id ≤ N。
 '''
 
-l=map(int,input().split(' '))
-N,M,T=l[:3]
-l=l[3:]
-l1,l2=[],[]
-l3,l4=[],[]
-for i1 in l[::2]:
-    l1.append(i1)
-for i2 in l[1::2]:
-    l2.append(i2)
-for i in len(M):
-    if l2[i]==1:
-        l3.append(l1[i])
-    elif l2[i]==2:
-        l4.append(l1[i])
+# l=map(int,input().split(' '))
+# N,M,T=l[:3]
+# l=l[3:]
+# l1,l2=[],[]
+# l3,l4=[],[]
+# for i1 in l[::2]:
+#     l1.append(i1)
+# for i2 in l[1::2]:
+#     l2.append(i2)
+# for i in len(M):
+#     if l2[i]==1:
+#         l3.append(l1[i])
+#     elif l2[i]==2:
+#         l4.append(l1[i])
