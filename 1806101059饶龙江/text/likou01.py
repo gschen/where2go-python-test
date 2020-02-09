@@ -1,3 +1,6 @@
+'''
+题目描述：现有n个坐标，需要计算出香相邻坐标的最短路径（单位坐标长度和对角线都看作1）
+'''
 class Solution(object):
     def minTimeToVisitAllPoints(self, points):
         """

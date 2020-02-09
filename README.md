@@ -1,6 +1,9 @@
 # where2go-python-test
 
-where2go团队成员python练习代码。
+where2go团队成员python练习代码,欢迎扫描关注，了解更多。
+
+
+![](0000-png/logo.jpg)
 
 ## Python教程
 
