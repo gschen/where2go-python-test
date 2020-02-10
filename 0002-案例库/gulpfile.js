@@ -622,6 +622,7 @@ const viewFuncs = {
         .filter((codelab) => {
           // Rilter hidden codelabs from the default view. All other views are
           // explictly opt-in via metadata.
+          console.dir(codelab)
           return viewId !== 'default' || codelab.status.indexOf('hidden') === -1;
         });
 
