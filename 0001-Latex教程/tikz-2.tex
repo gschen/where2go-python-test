@@ -1,0 +1,589 @@
+%%% Sieve of Eratosthenes
+%%% ---------------------
+%%%
+%%%    Step 1: Create a list of consecutive integers 2...n
+%%%    Step 2: Let p=2 be the first prime number
+%%%    Step 3: Mark multiples of p as non-prime.
+%%%    Step 4: First number > p not marked as non-prime is prime.
+%%%    Step 5: Repeat from Step 3 with this new prime.
+%%%
+%%% ---------------------------------------------------------------
+%%% Set-up: Choose desired output: 
+%%%            1. Animation: GIF, or PDF
+%%%            2. Paper version: Step by step) or Final state.
+%%% 
+%%% Author: Peter Grill
+
+%\def\ShowStepByStep{}% Comment out if only want final result
+
+%%% Choose if want animated version. This overrides \ShowStepByStep
+\def\AnimateSieve{}% Comment out if don't want animated version
+
+%%% Chose if want animated gif image instead. Overrides \AnimateSieve
+%\def\AnimatedGif{}% 
+%
+%%% The \AnimatedGif option produces a PDF with each page containing
+%%% a single frame. To convert this to a GIF, use the following, where
+%%% convert is part of ImageMagik
+%%%
+%%%     pdfcrop SieveOfEratosthenes.pdf
+%%%     convert -verbose -delay 100 -loop 0 -density 400 
+%%%                      SieveOfEratosthenes-crop.pdf 
+%%%                      SieveOfEratosthenes.gif
+
+%%% ---------------------------------------------------------------
+%%% Customize: Choose size: NumberOfColumns x NumberOfRows
+%%%            Other options may need tweaking based on size settings
+%%% 
+%%% Note that if the product of \NumOfColumns x \NumOfRows
+%%% is greater than 100, the \FramesToHoldAtEnd should be
+%%% larger than 25.  No check below is made of this, but will
+%%% result in some of larger primes not being highlighted at
+%%% the end of the cycle (if this is not large enough).
+
+\def\NumOfColumns{10}% See note above if product of  
+\def\NumOfRows{10}%    NumOfColumns and NumOfRows > 100.
+
+%% \FramesToHoldAtEnd should be larger than the number of primes
+%% so that they can get highlighted at the end of the process
+\def\FrameRate{1}%
+\def\FramesToHoldAtStart{3}%
+\def\FramesToHoldAtEnd{25}% 25 is enough for 10x10
+
+\def\Scale{0.6}% May need tweaking..
+
+\def\MinipageScale{1.0}%
+\def\MinipageScaleForStepByStep{0.49}%
+
+%% Without this scale adjustment for the animated GIF,
+%% the image is quite large.
+\def\ScaleForAnimatedGif{0.6}%
+
+\def\PrimeColor{yellow}%  Shade for primes found previously
+\def\NewPrimeColor{cyan}% Shade for prime just found
+\def\NewPrimeText{blue}%  Color for primes in list
+\def\NonPrimeColor{red}%  Shade for non-primes
+
+%% List of Primes is typeset into a \node of this width.
+\def\TextWidth{2.0cm}%
+
+%%% ---------------------------------------------------------------
+\ifdefined\AnimatedGif
+    \documentclass[border=2pt,multi=true]{standalone}
+\else\ifdefined\AnimateSieve
+    \documentclass{article}
+\else
+    \documentclass{article}% for paper version
+\fi\fi
+%%% Can use the following to show the final state for large 
+%%% (tested up to 53x52) 
+%\usepackage[paperwidth=35in,paperheight=35in]{geometry}
+\usepackage{geometry}
+
+\usepackage{microtype}%       Allow comma into margin in list of primes
+\usepackage{xstring}%         String comparison
+\usepackage{tikz}%            Drawing
+\usetikzlibrary{calc}%        Coordinate calculations
+\usetikzlibrary{backgrounds}% Apply shading on background layer
+
+\ifdefined\AnimatedGif
+    \usepackage{animate}% no controls, or looping needed
+    \def\AnimateSieve{}% Simplifies code
+                       % if this is set for \AnimatedGif as well.
+    \def\Scale{\ScaleForAnimatedGif}% Otherwise GIF is too large
+
+    % Simplifies code below if we just redefine these two from the
+    % animate package so that they do don't much.
+    \renewenvironment{animateinline}[1]{\begingroup}{\endgroup}% 
+    \renewcommand{\newframe}[1][]{\newpage}%
+\else% Note: This \else is skipped for \AnimatedGif
+    \ifdefined\AnimateSieve% 
+        \usepackage[loop,controls]{animate}% looped animation
+        \let\ShowStepByStep\relax% Ensure that \ShowStepByStep is undefined
+    \else% Print version
+        \usepackage{animate}% provides whiledo (could include ifthen)
+
+        % Simplifies code below if we just redefine these two from the
+        % animate package so that they do don't much.
+        \renewenvironment{animateinline}[1]{\begingroup}{\endgroup}% 
+        \renewcommand{\newframe}[1][]{\newpage}%
+
+        \ifdefined\ShowStepByStep
+            \def\MinipageScale{\MinipageScaleForStepByStep}%
+        \fi
+    \fi
+\fi
+
+%%% ---------------------------------------------------------------
+%%% Should not need to adjust anything below this line
+%%%
+\pgfmathtruncatemacro{\MaxNumber}{\NumOfRows*\NumOfColumns}%
+\pgfmathtruncatemacro{\MaxValue}{sqrt(\MaxNumber)}%
+
+% Choose opacity so that we can have the max number of shades
+\pgfmathsetmacro{\Opacity}{1.0/min(20,\MaxValue-1)}%
+
+%% The Sieve algorithm requires that once a number is marked
+%% as non-prime (i.e., was a multiple of some other number)
+%% we don't need to check multiples of that number as they
+%% have already been marked as non-prime.
+%%
+%% Usually one would use an array and set a flag.  But since
+%% variables with numbers are difficult with TeX, we can
+%% define a node named with the number that is non-prime.
+%% Then just check that the node exists to see if it was 
+%% marked as non-prime.
+
+\makeatletter
+% Mark number as either "Prime" or "NonPrime".
+\newcommand*{\MarkNumber}[2][NonPrime]{\node (#1#2) {}}% #1=prefix, #2=num
+
+% http://tex.stackexchange.com/questions/37709/
+\newcommand{\IfNumberAlreadyMarked}[4][NonPrime]{% #1=prefix, #2=num
+    \pgfutil@ifundefined{pgf@sh@ns@#1#2}{#4}{#3}%
+}
+
+% http://tex.stackexchange.com/questions/20655/
+\newcommand*\@nameundef[1]{%
+    \global\expandafter\let\csname #1\endcsname\@undefined%
+}
+
+%% Since we repeat the process from the beginning for the animated
+%% version, use this to clear the nodes so that the numbers are
+%% not marked as multiples of a number from the previous run.
+\newcommand{\ClearAllNumberedNodeNames}{%
+    \foreach \i in {1,...,\MaxValue}{%
+        \@nameundef{pgf@sh@ns@NonPrime\i}%
+        \@nameundef{pgf@sh@ns@Prime\i}%
+    }%
+}
+\makeatother
+
+%% The Sieve algorithm skips multiples of numbers already marked as
+%% non-prime.  So, to number the individual steps, need to use
+%% a counter.
+%% i.e., Step 4 is processing multiples of 5 (since we skip 4).
+\newcounter{StepNumber}%
+
+%%% ---------------------------------------------------------------
+%%%
+%%%  Titles and Labels
+%%%
+
+\newcommand\ListOfPrimes{}
+\newcommand\AddToListOfPrimes[2][fill=\PrimeColor]{%
+    \IfStrEq{\ListOfPrimes}{}{%
+        \def\Separator{}%   First member of list of primes
+    }{%
+        \def\Separator{, }% Subsequent member of list of primes
+    }%
+    %
+    \FillCellForGivenNumber[#1]{#2};%
+    \global\edef\ListOfPrimes{\ListOfPrimes\Separator#2}%
+    \MarkNumber[Prime]{#2};%
+}
+
+\newcommand*{\ClearListOfPrimes}{%
+    \ClearAllNumberedNodeNames;%
+    \renewcommand{\ListOfPrimes}{}%
+}
+
+\newcommand*{\Title}{%
+    {\noindent\Large%
+        \textbf{Sieve of Eratosthenes}~%
+        ($\NumOfColumns \times \NumOfRows$)%
+    }%
+}
+
+\newcommand*{\SubTitleInitial}{%
+    \noindent\textbf{Step \theStepNumber}: Numbers from 2 \ldots\MaxNumber%
+}%
+
+\newcommand*{\SubTitle}[1]{%  For animation
+    \noindent\textbf{Step \theStepNumber}:~%
+    Eliminating multiples of \textcolor{\NewPrimeText}{\textbf{#1}}%
+}
+\newcommand*{\SubTitlePastTense}[1]{% For step by step
+    \noindent\textbf{Step \theStepNumber}:~%
+    Eliminated multiples of \textcolor{\NewPrimeText}{\textbf{#1}}%
+}
+\newcommand*{\SubTitleFinal}{%
+    \IfEq{\the\value{StepNumber}}{0}{%
+        % We are only showing the final result, so no steps to label.
+        % This is when we are not animating (nor showing step by step)
+    }{%
+        \noindent\textbf{Step \theStepNumber}: Remaining are prime.%
+    }%
+}
+
+\newcommand*{\AddTitleNode}{%
+    \ifdefined\AnimateSieve% Otherwise don't need title each time
+        \node [above, yshift=1.0ex]
+          at ($(0,0)!0.5!(\NumOfColumns,0)$) {\Title}
+    \fi%
+}
+
+\newcommand*{\AddSubTitleNode}[1]{% 
+    \IfStrEq{#1}{\empty}{%
+        % This is the final hold frame where we are showing the primes
+        \node [right] at (-1,0) {\SubTitleFinal}
+    }{%
+        \ifdefined\AnimateSieve%
+            \node at ($(0,0)!0.5!(\NumOfColumns,0)$) {\SubTitle{#1}}
+        \else%
+            \node [right] at (-1,0) {\SubTitlePastTense{#1}}
+        \fi%
+    }%
+}
+
+\newcommand*{\AddInitialSubTitleNode}[1]{%
+    \ifdefined\AnimateSieve%
+        \node at ($(0,0)!0.5!(\NumOfColumns,0)$) {\SubTitleInitial}
+    \else%
+        \node [right] at (-1,0) {\SubTitleInitial}
+    \fi%
+}
+
+\newcommand*{\Phantom}[1]{}%
+\newcommand*{\ShowListOfPrimesNode}{%
+    \IfStrEq{\ListOfPrimes}{}{%
+        %% Empty list of primes, so don't want to show anything.
+        %% Just add phantom spacing
+        \renewcommand*{\Phantom}[1]{\phantom{##1}}%
+    }{%
+        \renewcommand*{\Phantom}[1]{##1}%
+    }%
+
+    \node [below right, xshift=0.5em, yshift=-0.5ex, align=left,
+        text width=\TextWidth] at (\NumOfColumns,-1) 
+        {\Phantom{\textbf{Primes:}}};
+
+    \node [below right, xshift=0.2em, yshift=-3.5ex, align=left,
+        text width=\TextWidth] at (\NumOfColumns,-1) 
+        {\Phantom{\textbf{\textcolor{\NewPrimeText}%
+        {\raggedleft\ListOfPrimes}}}};
+}
+
+%%% ---------------------------------------------------------------
+
+%%%
+%%% Step 1: Create a list of integers 2...n
+%%%
+\newcommand*{\DrawGridWithNumbers}{%
+    \begin{scope}[draw=gray, thick]% Add numbers to each node
+        \draw  (0,-1) -- ($(0,-\NumOfRows-1)$);
+        \foreach \col in {1,...,\NumOfColumns} {%
+            \draw  (\col,-1) -- ($(\col,-\NumOfRows-1)$);
+
+            \draw  (0,-1) -- (\NumOfColumns,-1);
+            \foreach \row in {1,...,\NumOfRows}{%
+                \pgfmathtruncatemacro{\value}{\col+\NumOfColumns*(\row-1)}
+                \IfEq{\value}{1}{
+                    %% Suppress number 1 from being printed since first  
+                    %% step of Sieve of Eratosthenes algorithm is to 
+                    %% create a list of integers 2...n
+                }{
+                    \node at ($(\col,-\row)-(0.5,0.5)$) {\textbf{\value}};
+                }
+                \draw (0,-\row-1) -- (\NumOfColumns,-\row-1);
+            }
+        }
+    \end{scope}
+
+    %% Since we just drew the grid we should ensure that none
+    %% of the numbered nodes exist (i.e., that no numbers
+    %% are marked as non-prime.  And reset list of primes.
+
+    \ClearListOfPrimes;
+    \ClearAllNumberedNodeNames;
+
+    \ShowListOfPrimesNode;
+}
+
+\newcommand*{\FillCellForGivenNumber}[2][]{%
+    %% #1 = fill options
+    %% #2 = number
+    %%
+    \pgfmathtruncatemacro{\Column}{mod(#2,\NumOfColumns)}%
+    \IfEq{\Column}{0}{\pgfmathtruncatemacro{\Column}{\NumOfColumns}}{}%
+    \pgfmathtruncatemacro{\Row}{(#2-1)/\NumOfColumns+1}%
+
+    \begin{scope}[on background layer]
+        \fill [#1]
+            (\Column-1,-\Row) --
+            ($(\Column-1,-\Row)+(1,0)$) --
+            ($(\Column-1,-\Row)+(1,-1)$) -- 
+            (\Column-1,-\Row-1) --
+            cycle;
+    \end{scope}
+}
+
+\newcommand*{\ColorMultiplesOf}[2][0]{%
+    %% If only 1 arg is given (i.e., #1=0), then 
+    %%     #2 = the multiple for which the coloring is applied
+    %%
+    %% If two args are given (i.e., #1 != 0) then
+    %%     #1 = Value of \MaxMultiple (used for animated version)
+    %%          In the two arg case we run the entire sequence 
+    %%          from the beginning up until the multiple #1*#2 
+    %%          is reached.
+
+    \IfEq{#1}{0}{% Run the entire sequence
+        \pgfmathtruncatemacro{\MaxMultiple}{\MaxNumber/#2}
+    }{%            Run sequence up until number given for animating
+        \def\MaxMultiple{#1}
+    }
+
+    \foreach \i in {2,...,\MaxMultiple} {
+        \pgfmathtruncatemacro{\NonPrimeNumber}{\i*#2}
+        \FillCellForGivenNumber[
+                fill=\NonPrimeColor, 
+                fill opacity=\Opacity
+            ]
+            {\NonPrimeNumber};
+        \MarkNumber[NonPrime]{\NonPrimeNumber};
+    }
+}
+
+\newcommand*{\BuildFrameInternals}[2][0]{%
+    %% #1 = current multiple to which to build the pattern up to
+    %%      if #1=0 and #2=\MaxValue, then we are in an end hold frame
+    %% #2 = number of whose multiples we are eliminating in this step
+    %%      if #2=1, then only draw grid (provides hold frame at start)
+
+    \AddTitleNode;% Print Main title if \AnimateSieve is defined
+
+    \DrawGridWithNumbers;
+    \IfEq{#2}{1}{%
+        %% This is a hold frame at start so only show grid of numbers
+        \AddInitialSubTitleNode{#2};
+    }{%
+        \IfEq{#2}{2}{%
+            %% No pre-processing steps to be done in this case
+        }{%
+            %% Since we are eliminating multiples of a number  
+            %% other than 2, we need to get the table up to  
+            %% the state where all the multiples of 2...(#2-1) 
+            %% are eliminated.
+
+            \pgfmathsetmacro{\PreviousMultiple}{#2 - 1}%
+            \foreach \n in {2,...,\PreviousMultiple} {%
+                \IfNumberAlreadyMarked[NonPrime]{\n}{%
+                    %% Skip. Multiples are already marked as non-prime
+                    %% since this number is a multiple of a smaller
+                    %% prime.
+                }{%
+                    %% This is a prime. Mark it as prime, and mark 
+                    %% its multiples as non-prime.
+                    \AddToListOfPrimes[fill=\PrimeColor]{\n};
+                    \ColorMultiplesOf{\n};
+                }
+            }
+        }
+
+        \IfNumberAlreadyMarked[NonPrime]{#2}{%
+            %% Already taken care of in a previous run.  This test
+            %% is needed to cover the case where the value of the
+            %% sqrt{NumberOfColumns x NumberOfRows) is not prime.
+            %% For example: 10x10.
+        }{%
+            %% Now eliminate the numbers up to the current state
+            \AddToListOfPrimes[fill=\NewPrimeColor]{#2};
+            \ColorMultiplesOf[#1]{#2};
+        }
+
+        %% If we are holding the very final result don't print title.
+        %% This is the case when #2=\MaxValue and #1=0.
+        %%
+        %% Need to do this at the end so that we can access
+        %% which numbers have been marked as non-prime.
+
+        \IfEq{#2}{\MaxValue}{%
+            \IfEq{#1}{0}{%
+                %% This is the final hold frame
+                \SubTitleFinal;
+
+                \IfNumberAlreadyMarked[NonPrime]{#2}{%
+                }{%
+                    \IfNumberAlreadyMarked[Prime]{#2}{%
+                        %% In this case, #2 is not a new prime so 
+                        %% correct its color. So, don't add it to the
+                        %% list of primes, but correct ensure its
+                        %% color corresponds to an old prime
+                        \FillCellForGivenNumber[fill=\PrimeColor]{#2};
+                    }{%
+                        %% In this case, #2 is a new prime so 
+                        %% add it to the list of primes,                
+                        \AddToListOfPrimes[fill=\NewPrimeColor]{#2};
+                    }%
+                }%
+
+                %% But since this is the final hold frame, we need
+                %% to mark all the numbers not already marked as 
+                %% non-prime as prime. Do one at at time, so that
+                %% this can be seen in the animation.
+
+                \pgfmathtruncatemacro{\StartValue}{\MaxValue+1}%
+                \foreach \p in {\StartValue,...,\MaxNumber}{%
+                    \IfNumberAlreadyMarked[NonPrime]{\p}{%
+                        %% This number has been marked as non-prime
+                    }{%
+                        %% This is a prime
+                        \IfNumberAlreadyMarked[Prime]{\p}{%
+                            %% Already found this prime earlier.
+                            %% So ensure it has appropriate fill.
+                            \AddToListOfPrimes[fill=\PrimeColor]{\p};%
+                        }{%
+                            %% New prime: Mark it as such, and 
+                            %% break out to complete this frame.
+                            \AddToListOfPrimes[fill=\NewPrimeColor]{\p};%
+                            \MarkNumber[Prime]{\p};%
+                            \AddSubTitleNode{};%
+                            \breakforeach;%
+                        }%
+                    }%
+                }%
+            }{%
+                %% Not final hold frame, so normal title
+                \AddSubTitleNode{#2};%
+            }%
+        }{%
+            \AddSubTitleNode{#2};%
+        }%
+    }%
+    \ShowListOfPrimesNode%
+}%
+
+\newcommand*{\AddVerticalSpearationForStepByStep}{%
+    \ifdefined\ShowStepByStep%  So that the minipages for this case
+        \vspace*{4.0ex}%        are not stacked directly on top of
+    \fi%                        each other.
+}%
+
+\newcommand*{\BuildFrame}[2][0]{%
+    %% #1 = current multiple to which to build the pattern up to
+    %% #2 = number of whose multiples we are eliminating in this step
+    %%      if #2=1, then only draw grid (provides hold frame at start)
+    \noindent%
+    \begin{minipage}{\MinipageScale\linewidth}%
+    \centering%
+    \begin{tikzpicture}[scale=\Scale]%
+        \BuildFrameInternals[#1]{#2};
+    \end{tikzpicture}%
+    %
+    \AddVerticalSpearationForStepByStep% Better spacing for Step by Step
+    \end{minipage}%
+}%
+
+\newcommand*{\BuildFinalFrame}{%
+    \noindent%
+    \begin{minipage}{\MinipageScale\linewidth}%
+    \centering%
+    \begin{tikzpicture}[scale=\Scale]%
+        \AddTitleNode;% Print Main title if \AnimateSieve is defined
+        \AddSubTitleNode{};
+        \DrawGridWithNumbers;
+        \foreach \p in {2,...,\MaxValue}{%
+            \IfNumberAlreadyMarked[NonPrime]{\p}{%
+            }{%
+                \AddToListOfPrimes[fill=\PrimeColor]{\p};
+                \ColorMultiplesOf{\p};
+            }%
+        }%
+        \pgfmathtruncatemacro{\StartValue}{\MaxValue+1}%
+        \foreach \p in {\StartValue,...,\MaxNumber}{%
+            \IfNumberAlreadyMarked[NonPrime]{\p}{%
+                %% This number has already been marked as non-prime
+            }{%
+                %% This is a prime. Since we are just printing out
+                %% the final results we don't distinguish between a
+                %% newly found prime and a prime found previously.
+                \AddToListOfPrimes[fill=\PrimeColor]{\p};
+            }%
+        }%
+
+        \ShowListOfPrimesNode;
+    \end{tikzpicture}%
+    %
+    \AddVerticalSpearationForStepByStep% Better spacing for Step by Step
+    \end{minipage}%
+}
+
+\begin{document}
+\ifdefined\AnimateSieve
+    \newcounter{CountK}
+    \newcounter{CountP}
+    \newcounter{CurrentMaxMultiplePlusOne}
+    %
+    \begin{animateinline}{\FrameRate}%
+        \stepcounter{StepNumber}%
+        \setcounter{CountK}{0}%
+        \whiledo{\arabic{CountK} < \FramesToHoldAtStart}{%
+            \BuildFrame[0]{1}% initial hold frame
+            \newframe[\FrameRate]%
+            \stepcounter{CountK}%
+        }%
+        %
+        \setcounter{CountK}{2}%
+        \whiledo{\numexpr\arabic{CountK}-1 < \MaxValue}{%
+            \IfNumberAlreadyMarked[NonPrime]{\arabic{CountK}}{%
+                %% \value{CountK} has already been marked as non-prime.
+                %% Hence, so so are its multiples, and we can skip it.
+            }{%
+                \pgfmathtruncatemacro{\MaxMultiple}{\MaxNumber/\arabic{CountK}}%
+                \setcounter{CurrentMaxMultiplePlusOne}{\MaxMultiple}%
+                \stepcounter{CurrentMaxMultiplePlusOne}%
+                %
+                \setcounter{CountP}{2}% 
+                \stepcounter{StepNumber}%
+                \whiledo{\arabic{CountP} < \arabic{CurrentMaxMultiplePlusOne}}{%
+                    \BuildFrame[\theCountP]{\theCountK}%
+                    \newframe[\FrameRate]%
+                    \stepcounter{CountP}%
+                }%
+            }%
+            \stepcounter{CountK}%
+        }%
+        % At end, add hold frames in case we are looping
+        %
+        % There needs to be enough of these so that each of the
+        % primes (those not colored in) get highlighted at each frame.
+        %
+        \setcounter{CountK}{2}%
+        \whiledo{\numexpr\arabic{CountK}-1 < \FramesToHoldAtEnd}{%
+            \BuildFrame{\MaxValue}%
+            \newframe[\FrameRate]%
+            \stepcounter{CountK}%
+        }
+    \end{animateinline}%
+\else\ifdefined\ShowStepByStep
+    \parbox{0.95\linewidth}{\centering\Title\newline}%
+    \bigskip\par%
+    \setcounter{StepNumber}{1}%
+    \BuildFrame[0]{1}% Initial frame
+    \hfill%
+    %
+    \foreach \k in {2,...,\MaxValue}{%
+        \IfNumberAlreadyMarked[NonPrime]{\k}{%
+            % \k has already been marked as non-prime.
+            % Hence, so so are its multiples, and we can skip it.
+        }{%
+            % This is a prime, so mark it as such and mark all the
+            % multiples up to \MaxMultipleOfK as non-prime
+            \stepcounter{StepNumber}%
+            \pgfmathtruncatemacro{\MaxMultipleOfK}{\MaxNumber/\k}%
+            \BuildFrame[\MaxMultipleOfK]{\k}%
+            \hfill%
+        }%
+    }%
+    %
+    \stepcounter{StepNumber}%
+    \BuildFinalFrame% Final Frame
+\else% We only want to show the final frame
+    \parbox{0.95\linewidth}{\centering\Title}
+    \setcounter{StepNumber}{0}
+    \par
+    \BuildFinalFrame%
+\fi% \ifdefined\ShowStepByStep
+\fi% \ifdefined\AnimateSieve
+\end{document}

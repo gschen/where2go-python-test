@@ -1,0 +1,10 @@
+{
+  "title": "网络安全",
+  "description": "网络安全课程项目",
+  "logoUrl": "/sctu-security/logo-leetcode.svg",
+  "tags": ["sctu-security"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}
