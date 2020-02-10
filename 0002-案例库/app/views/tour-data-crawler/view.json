@@ -1,0 +1,10 @@
+{
+  "title": "旅游大数据采集",
+  "description": "旅游大数据采集实验项目",
+  "logoUrl": "/sctu-ds/logo-ds.svg",
+  "tags": ["tour-data-crawler"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}
