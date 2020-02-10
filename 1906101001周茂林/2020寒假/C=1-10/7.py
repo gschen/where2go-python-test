@@ -33,3 +33,4 @@ def aaa(N):
 
 N = int(input())
 print(aaa(N))
+

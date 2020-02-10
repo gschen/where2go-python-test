@@ -11,3 +11,4 @@ for i in range(1, 2020):
             s += i*i
             break
 print(s)
+

@@ -43,3 +43,4 @@ for i in lis:
     if m < i < n:
         v += 1
 print(v)
+

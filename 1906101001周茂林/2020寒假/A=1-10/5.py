@@ -20,3 +20,4 @@ for e in range(1, n):
         break
 X = C**e % n
 print(X)
+

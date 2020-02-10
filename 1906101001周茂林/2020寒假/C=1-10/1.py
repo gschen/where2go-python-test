@@ -19,3 +19,4 @@ for i in list(s1):
     elif a <= 0:
         break
 print(a)
+

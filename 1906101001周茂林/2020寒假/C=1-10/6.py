@@ -23,6 +23,8 @@
 程序应该输出：
 9232
 '''
+
+
 N = 100
 lis = []
 for i in range(2, N):
@@ -33,3 +35,4 @@ for i in range(2, N):
             i = i*3+1
         lis.append(int(i))
 print(max(lis))
+

@@ -25,3 +25,4 @@ for i in range(n):
         continue
 print(lis)
 print('------')
+
