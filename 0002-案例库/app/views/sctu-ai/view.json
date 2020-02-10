@@ -1,0 +1,10 @@
+{
+  "title": "人工智能",
+  "description": "人工智能实验项目",
+  "logoUrl": "/sctu-ai/ai.svg",
+  "tags": ["sctu-ai"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}

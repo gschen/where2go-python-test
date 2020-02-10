@@ -1,10 +1,8 @@
 import random
 
-
 g = [[5, 1, 1], [5, 1, 2], [5, 2, 1], [5, 2, 2], [6, 1, 1], [6, 1, 2], [6, 2, 1], [6, 2, 2]]
 y = [[3, 1, 1], [3, 1, 2], [3, 2, 1], [3, 2, 2], [4, 1, 1], [4, 1, 2], [4, 2, 1], [4, 2, 2]]
 # o = [[1, 1, 1], [1, 1, 2], [1, 2, 1], [1, 2, 2], [2, 1, 1], [2, 1, 2], [2, 2, 1], [2, 2, 2]]
-
 
 def rx():
     for i in g, y:
@@ -118,8 +116,8 @@ def run(num):
                 continue
         all.append([sorted(g),sorted(y)])
     print(len(all))
-run(215)
+run(1000)
 
-print("green :", g)
-print("yellow:", y)
+# print("green :", g)
+# print("yellow:", y)
 # print("orange:", o)
