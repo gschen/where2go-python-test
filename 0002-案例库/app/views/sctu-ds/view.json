@@ -1,0 +1,10 @@
+{
+  "title": "数据结构",
+  "description": "数据结构实验项目",
+  "logoUrl": "/sctu-ds/logo-ds.svg",
+  "tags": ["sctu-ds"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "title": "微信小程序",
+  "description": "微信小程序",
+  "logoUrl": "/sctu-ds/logo-ds.svg",
+  "tags": ["sctu-wechat"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}
