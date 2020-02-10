@@ -21,3 +21,4 @@ def getNoZeroIntegers(n):
 
 n = 1010
 print(getNoZeroIntegers(n))
+

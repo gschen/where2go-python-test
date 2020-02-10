@@ -27,6 +27,8 @@
 
 
 def isPossibleDivide(nums, k):
+    if len(nums)%k != 0:
+        return False
     nums = sorted(nums)
     for _ in range(len(nums)//k):
         a = nums[0]
@@ -34,5 +36,7 @@ def isPossibleDivide(nums, k):
             if a in nums:
                 nums.remove(a)
                 a+=1
-    return len(nums) == 0
+            else:
+                return False
+    return True
 print(isPossibleDivide([3,2,1,5,6,8],3))
