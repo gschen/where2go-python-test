@@ -1,4 +1,5 @@
 #!/bin/bash
+git pull
 
 CMD_EXPORT=""
 
