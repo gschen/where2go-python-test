@@ -19,3 +19,4 @@ for i in range(2000, 9999):
     if n == 0 and (i-1999) % 100 == 0:
         print(i)
         break
+

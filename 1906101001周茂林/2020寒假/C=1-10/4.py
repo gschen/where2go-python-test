@@ -20,3 +20,4 @@ for A in range(1, 10):
                                     if len(set(list('ABCDEFGHI'))) == 9 and A + B/D*100+E*10+F + C/G*100+H*10+I == 10:
                                         s += 1
 print(s)
+

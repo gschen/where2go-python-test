@@ -46,3 +46,4 @@ for i in range(len(lis)-1):
         print(lis[i]+1, end=' ')
         break
 print(v)
+

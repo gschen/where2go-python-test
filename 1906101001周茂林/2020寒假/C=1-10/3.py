@@ -14,3 +14,4 @@ while len(set(lis)) == len(lis):
         a += int(i)**2
     lis.append(a)
 print(max(lis))
+

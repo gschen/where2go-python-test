@@ -17,3 +17,4 @@ ABDCDCBABC
 3
 '''
 s = input()
+

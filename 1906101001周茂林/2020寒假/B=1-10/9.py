@@ -39,3 +39,4 @@ for i in lis:
                 if 0 not in int(str(a)+str(b)+str(c)) and len(set(str(a) + str(b) + str(c))) == 9 and a + (b/c) == n:
                     m += 1
 print(m)
+

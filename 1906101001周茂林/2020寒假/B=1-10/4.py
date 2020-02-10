@@ -38,3 +38,4 @@ def aaa(n, m):
 
 n, m = 1, 300
 print(aaa(n, m))
+

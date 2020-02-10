@@ -13,3 +13,4 @@ for i in range(3, 101):
     b = i**2 - a
     c += b
 print(c)
+

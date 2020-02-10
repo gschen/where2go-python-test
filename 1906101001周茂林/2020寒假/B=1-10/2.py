@@ -19,3 +19,4 @@ for i in range(12345, 98765):
             int(i[:2]) * int(i[2:]) == int(i[0]+i[3]+i[1]) * int(i[2]+i[4]):
             n += 1
 print(n)
+

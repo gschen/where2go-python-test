@@ -32,3 +32,4 @@ for i in range(len(lis)-1):
         if len(lis[i:j+1]) == max(lis[i:j+2]) - min(lis[i:j+2]) + 1:
             m += 1
 print(m)
+
