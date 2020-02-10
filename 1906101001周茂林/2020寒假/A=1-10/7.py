@@ -42,3 +42,4 @@ for i in lis:
     if i >= 5:
         n += 1
 print(n)
+

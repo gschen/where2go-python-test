@@ -5,3 +5,4 @@ a, b, c, d = 1, 1, 1, 3
 for i in range(2015):
     a, b, c, d = b, c, d, a+b+c
 print(str(d)[-4:])
+
