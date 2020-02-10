@@ -9,13 +9,13 @@ __pycache__
 *.gz
 
 
-0002案例库/node_modules
+/0002-案例库/node_modules
 
-0002案例库/build/
+/0002-案例库/build/
 
-0002案例库/deploy.sh
-0002案例库/run.sh
+/0002-案例库/deploy.sh
+/0002-案例库/run.sh
 
-0002案例库/codelabs/*
-!0002案例库/codelabs/*.md
-!0002案例库/codelabs/assets
+/0002-案例库/codelabs/*
+!/0002-案例库/codelabs/*.md
+!/0002-案例库/codelabs/assets
