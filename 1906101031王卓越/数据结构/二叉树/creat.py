@@ -8,7 +8,7 @@ class classname(object):
             if self.left is None:
                 self.left=data
             else:
-                self.student(data)
+                self.left.student(data)
         if data>self.data:
             if self.right is None:
                 self.right=data
@@ -16,3 +16,4 @@ class classname(object):
                 self.right.student(data)
 s=classname(10)
 print(s.student(8))
+print(s.student(6))
