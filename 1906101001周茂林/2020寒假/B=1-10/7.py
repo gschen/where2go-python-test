@@ -31,3 +31,18 @@
 105 120
 请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
 '''
+n = int(input())
+lis = []
+for i in range(n):
+    m = map(int, input().split())
+    for j in m:
+        if j in lis:
+            v = j
+        else:
+            lis.append(j)
+lis = list(set(lis))
+for i in range(len(lis)-1):
+    if lis[i+1] - lis[i] == 2:
+        print(lis[i]+1, end=' ')
+        break
+print(v)

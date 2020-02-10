@@ -36,5 +36,5 @@ def aaa(n, m):
         return Decimal(1 / (1 + aaa(n, m-1)))
 
 
-n, m = 1, 100
+n, m = 1, 300
 print(aaa(n, m))

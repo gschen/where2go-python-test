@@ -24,3 +24,11 @@
 第一个用例中，有7个连号区间分别是：[1,1], [1,2], [1,3], [1,4], [2,2], [3,3], [4,4]
 第二个用例中，有9个连号区间分别是：[1,1], [1,2], [1,3], [1,4], [1,5], [2,2], [3,3], [4,4], [5,5]
 '''
+n = int(input())
+lis = list(set(map(int, input().split())))
+m = 0
+for i in range(len(lis)-1):
+    for j in range(1, len(lis)-i):
+        if len(lis[i:j+1]) == max(lis[i:j+2]) - min(lis[i:j+2]) + 1:
+            m += 1
+print(m)

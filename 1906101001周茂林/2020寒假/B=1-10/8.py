@@ -24,3 +24,22 @@
 程序输出：
 8
 '''
+m, n = map(int, input().split())
+lis = list(range(1, n+1))
+for i in range(n):
+    if i >= len(lis)-1:
+        break
+    k = lis[i]
+    if k == 1:
+        k = 2
+    for j in range(len(lis)):
+        if (j+1) % k == 0:
+            lis[j] = 0
+    lis = list(set(lis))
+    if 0 in lis:
+        lis.remove(0)
+v = 0
+for i in lis:
+    if m < i < n:
+        v += 1
+print(v)
