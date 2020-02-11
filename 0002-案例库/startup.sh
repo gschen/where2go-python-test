@@ -10,7 +10,7 @@ Linux) CMD_EXPORT=""$CMD_EXPORT"claat-linux-amd64"
 ;;
 esac
 
-CMD_EXPORT=""$CMD_EXPORT" export *.md"
+CMD_EXPORT=""$CMD_EXPORT" export *.md -ga UA-158179709-1"
 echo $CMD_EXPORT
 
 cd codelabs
