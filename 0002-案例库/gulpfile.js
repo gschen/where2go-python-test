@@ -230,14 +230,14 @@ gulp.task('build:vulcanize', () => {
 // build builds all the assets
 gulp.task('build', gulp.series(
   'clean',
-  'build:codelabs',
-  'build:css',
-  'build:scss',
-  'build:html',
-  'build:images',
-  'build:js',
-  'build:elements_js',
-  'build:vulcanize',
+  'build:codelabs', // * 王宇，刘玉江
+  'build:css', // - 周婷婷
+  'build:scss', // - 杨曦
+  'build:html', // * 黄晓峰
+  'build:images', // - 周婷婷
+  'build:js', // * 冯博
+  'build:elements_js', // - 朱佳
+  'build:vulcanize', // - 朱佳
 ));
 
 // copy copies the built artifacts in build into dist/
