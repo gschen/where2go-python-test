@@ -26,4 +26,6 @@ pip install opencv-python
 
 ```
 ctrl + k + p md生成pdf,docx,html
+
+shift + opt + F
 ```
