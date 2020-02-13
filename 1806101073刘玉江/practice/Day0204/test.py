@@ -4,6 +4,7 @@ url = 'https://www.yujl.top/'
 
 header = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36'
-    }
-while(True):
+}
+for i in range(0,101):
     req = requests.get(url, headers=header)
+    print(i)
