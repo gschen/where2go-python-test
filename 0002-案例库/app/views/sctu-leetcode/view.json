@@ -1,0 +1,10 @@
+{
+  "title": "LeetCode",
+  "description": "LeetCode程序设计项目",
+  "logoUrl": "/sctu-leetcode/logo-leetcode.svg",
+  "tags": ["sctu-leetcode"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}

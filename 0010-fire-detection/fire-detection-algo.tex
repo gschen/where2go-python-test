@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, left=0.5in, right=0.5in, top=0.5in, bottom=0.5in]{geometry}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{subfigure}
+\usepackage{longtable}
+
+\setmainfont{Times New Roman}  
+\setCJKmainfont{Songti SC}
+
+\title{火焰检测算法}
+\author{陈功锁,马原涛,饶龙江}
+\date{\today}
+
+\begin{document}
+\doublespacing
+\maketitle
+
+\section{引言}
+
+\section{火焰检测算法}
+
+\subsection{颜色模型}
+
+文献\cite{陈嘉卿基于}提出一种多特征和BP神经网络的方法来识别火焰，提取了火焰的五种特征如下所示：
+\begin{itemize}
+    \item 火焰面积变化率$ A_r$
+    \item 火焰相似度$ \alpha$
+    \item 闪烁频率$ f$
+    \item R通道灰度差分均值$ \mu_D$
+    \item 灰度差分变异系数$ CV$ 
+\end{itemize}
+
+文献\cite{周昱基于}提出一种基于RGB颜色模型检测高炉煤气火焰的方法，主要方法是：
+\begin{itemize}
+    \item 利用背景差分法(background subtraction)消除与火焰不相关的背景像素；
+    \item 利用滤波增强方法提升火焰蓝色分量的信息；
+    \item 利用ostu方法确定阈值对图像进行二值化处理；
+    \item 利用形态学中的腐蚀膨胀算法进一步去噪。
+\end{itemize}
+
+文献\cite{陈越2018森林火灾火焰像素检测的背景减除算法}提出一种野外环境森林火灾的检测方法，利用BS算法提取图像的运动像素，由于运动像素仍然包含了很多非火焰像素，在上述基础上结合火焰的颜色特征，进一步提取火焰像素。文章的主要贡献是从36种BS算法种选取了高斯平均值背景消除法、改进的高斯混合模型、混合高斯背景模型和局部二进制相似度分割背景消除法四种算法进行试验，并对四种效果较好的算法进行了比较分析。
+
+\section{结语}
+
+\bibliographystyle{plain}
+\bibliography{ref} 
+\end{document}

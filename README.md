@@ -1,6 +1,9 @@
 # where2go-python-test
 
-where2go团队成员python练习代码。
+where2go团队成员python练习代码,欢迎扫描关注，了解更多。
+
+
+![](0000-png/logo.jpg)
 
 ## Python教程
 
@@ -19,4 +22,10 @@ https://pintia.cn/problem-sets/1111652100718116864/problems/type/7
 ## install 3rd libs
 ```shell
 pip install opencv-python
+```
+
+```
+ctrl + k + p md生成pdf,docx,html
+
+shift + opt + F
 ```

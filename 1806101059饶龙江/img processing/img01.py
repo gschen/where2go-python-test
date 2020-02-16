@@ -3,6 +3,7 @@ import numpy as np
 #import  matplotlib.pyplot as plt
 #一般灰度化方法
 def gray_pixels(image):
+    cv.imwrite('C://sc//img2//{}.jpg'.format(0), image)
     for i in range(len(image)):
         for j in range(len(image[i])):
             a = image[i][j]
@@ -11,6 +12,8 @@ def gray_pixels(image):
 
     #使用双边滤波去掉点状噪声
     image1 = cv.bilateralFilter(image, 9, 75, 75)
+    cv.imwrite('C://sc//img2//{}.jpg'.format(1), image1)
+
 
     cv.imshow("med image", image1)
     #利用腐蚀去掉线状噪声
@@ -53,7 +56,7 @@ def chgray_pixels(image):
     cv.imshow("gary image",image)
 
 
-src = cv.imread("imgs/captchas/test_1.png")#gbr
+src = cv.imread("imgs/fire/code.jpg")#gbr
 cv.namedWindow("input image",cv.WINDOW_AUTOSIZE)
 #膨胀
 '''

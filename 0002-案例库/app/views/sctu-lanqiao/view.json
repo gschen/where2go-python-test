@@ -1,0 +1,10 @@
+{
+  "title": "蓝桥杯",
+  "description": "蓝桥杯程序设计项目",
+  "logoUrl": "/sctu-lanqiao/logo-lanqiao.png",
+  "tags": ["sctu-lanqiao"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}
