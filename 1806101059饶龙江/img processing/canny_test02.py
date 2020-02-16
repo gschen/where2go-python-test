@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-img = plt.imread('imgs/fire/test01.png')
+img = plt.imread('imgs/fire/T0t0.jpg')
 
 sigma1 = sigma2 = 1
 sum = 0

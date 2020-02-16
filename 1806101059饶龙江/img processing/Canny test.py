@@ -3,7 +3,7 @@ import numpy as np
 import math
 
 
-src = cv.imread("imgs/fire/t0000.jpg")
+src = cv.imread("imgs/fire/u=1463018956,861119745&fm=26&gp=0.jpg")
 img = cv.cvtColor(src,cv.COLOR_BGR2GRAY)
 
 

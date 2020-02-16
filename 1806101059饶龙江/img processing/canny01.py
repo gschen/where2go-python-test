@@ -244,8 +244,6 @@ def CANNY(img_path):
     cv.imshow('openingimg', openingimg)
     cv.waitKey(0)
     cv.destroyAllWindows()
-    print(DT[1][2])
-    print('-------',openingimg.shape)
 
     rect = locate_license(openingimg, img)
     return rect, img
@@ -287,5 +285,5 @@ def CANNY(img_path):
     '''
 
 
-CANNY("imgs/fire/t00001.jpg")
+CANNY("imgs/fire/u=1463018956,861119745&fm=26&gp=0.jpg")
 
