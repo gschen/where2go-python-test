@@ -230,14 +230,14 @@ gulp.task('build:vulcanize', () => {
 // build builds all the assets
 gulp.task('build', gulp.series(
   'clean',
-  'build:codelabs',
-  'build:css',
-  'build:scss',
-  'build:html',
-  'build:images',
-  'build:js',
-  'build:elements_js',
-  'build:vulcanize',
+  'build:codelabs', // * 王宇，刘玉江
+  'build:css', // - 周婷婷
+  'build:scss', // - 杨曦
+  'build:html', // * 黄晓峰
+  'build:images', // - 周婷婷
+  'build:js', // * 冯博
+  'build:elements_js', // - 朱佳
+  'build:vulcanize', // - 朱佳
 ));
 
 // copy copies the built artifacts in build into dist/
@@ -843,9 +843,15 @@ const sortCodelabs = (codelabs, view) => {
 // expression or view regular expression into the build/ folder. If no filters
 // are specified (i.e. if codelabRe and viewRe are both undefined), then this
 // function returns all codelabs in the codelabs directory.
+
+
+// copyFilteredColabs将所有与给定id正则表达式或视图正则表达式匹配的代码实验室复制到build/文件夹中。
+// 如果未指定筛选器（即，如果codelabRe和viewRe都未定义），则此函数返回codelabs目录中的所有codelabs。
+
 const copyFilteredCodelabs = (dest) =>  {
   // No filters were specified, symlink the codelabs folder directly and save
   // processing.
+  // 未指定筛选器，请直接将codelabs文件夹符号链接并保存处理过程。
   if (CODELABS_FILTER === '*' && VIEWS_FILTER === '*') {
     const source = path.join(CODELABS_DIR);
     const target = path.join(dest, CODELABS_NAMESPACE);
@@ -865,11 +871,15 @@ const copyFilteredCodelabs = (dest) =>  {
 
 // collectCodelabs collects the list of codelabs that match the given view or
 // codelab filter.
+
+//collectCodelabs收集与给定视图或codelab筛选器匹配的codelab列表。0
 const collectCodelabs = () => {
   const meta = collectMetadata();
   let codelabs = meta.codelabs;
 
   // Only select codelabs that match the given codelab ID.
+
+  // 只选择与给定的codelab ID匹配的codelab。
   if (CODELABS_FILTER !== '*') {
     codelabs = meta.codelabs.filter((codelab) => {
       return codelab.id.match(CODELABS_FILTER);
@@ -881,6 +891,7 @@ const collectCodelabs = () => {
   }
 
   // Only select codelabs that match the given view ID.
+  // 只选择与给定视图ID匹配的代码实验室。
   if (VIEWS_FILTER !== '*') {
     let views = [];
     Object.keys(meta.views).forEach((key) => {
@@ -894,6 +905,8 @@ const collectCodelabs = () => {
     }
 
     // Iterate over each view and include codelabs for that view.
+ 
+    // 遍历每个视图并包含该视图的代码实验室。 
     let s = new Set();
     for(let i = 0; i < views.length; i++) {
       let filtered = filterCodelabs(views[i], codelabs).codelabs;
@@ -903,6 +916,8 @@ const collectCodelabs = () => {
   }
 
   // Check if we have any codelabs
+
+  //检查我们是否有代码实验室
   if (codelabs.length === 0) {
     throw new Error('no codelabs matched given filters');
   }
