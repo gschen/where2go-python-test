@@ -231,13 +231,13 @@ gulp.task('build:vulcanize', () => {
 gulp.task('build', gulp.series(
   'clean',
   'build:codelabs', // * 王宇，刘玉江
-  'build:css', // - 周婷婷
-  'build:scss', // - 杨曦
+  'build:css', // - 王宇，刘玉江
+  'build:scss', // - 冯博
   'build:html', // * 黄晓峰
-  'build:images', // - 周婷婷
+  'build:images', // - 黄晓峰
   'build:js', // * 冯博
-  'build:elements_js', // - 朱佳
-  'build:vulcanize', // - 朱佳
+  'build:elements_js', // - 朱佳，周婷婷，杨曦
+  'build:vulcanize', // - 朱佳，周婷婷，杨曦
 ));
 
 // copy copies the built artifacts in build into dist/
