@@ -1,6 +1,7 @@
 '''
 6.标题：奇怪的分式
 '''
+#求最大公约数
 def gcd(a,b):
     if b==0:
         return a
@@ -20,13 +21,14 @@ def judge(a,b,c,d):
     y2=y2/g
     if x1==x2 and y1==y2:
         return True
-    return False
+    else:
+        return False
 
 res=0
-for i in range(10):
-    for j in range(10):
-        for a in range(10):
-            for b in range(10):
+for i in range(1,10):
+    for j in range(1,10):
+        for a in range(1,10):
+            for b in range(1,10):
                 if i!=j and a!=b:
                     if judge(i,j,a,b):
                         res+=1
