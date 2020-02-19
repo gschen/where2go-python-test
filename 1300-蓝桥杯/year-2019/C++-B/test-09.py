@@ -34,3 +34,4 @@ def self(N,M):
 		nums+=nums[i];
 		return 0
 
+
