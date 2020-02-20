@@ -16,52 +16,31 @@
 # 图2.jpg
 
 # 图3.jpg
-pos=[-4,4,-1,1]
-sum=0
-def judge(nums):
-    if nums ==5:
-        pos=[-4,4,1]
-        return pos
-    if nums in [2,3]:
-        pos=[4,-1,1]
-        return pos
-    if nums ==8:
-        pos=[-4,4,-1]
-        return pos
-    if nums in [10,11]:
-        pos=[-4,-1,1]
-        return pos
-    if nums==1:
-        pos=[4,1]
-        return pos
-    if nums==9:
-        pos=[-4,1]
-        return pos
-    if nums==4:
-        pos=[-1,4]
-        return pos
-    if nums==12:
-        pos=[-4,-1]
-        return pos
-    if nums in [6,7]:
-        pos=[-4,4,-1,1]
-        return pos
-for num in range(1,13):
-    nums=num
-    pos=judge(nums)
-    for i in pos:
-        num=num+i
-        pos=judge(nums)
-        for i in pos:
-            num=num+i
-            pos=judge(nums)
-            for i in pos:
-                num=num+i
-                pos=judge(nums)
-                for i in pos:
-                    num=num+i
-                    print(nums)
-                    
-                    sum+=1
-print(sum) 
+class Methed():
+    def main(self,nums):
+        if nums ==5:
+            self.pos=[-4,4,1]
+        if nums in [2,3]:
+            self.pos=[4,-1,1]          
+        if nums ==8:
+            self.pos=[-4,4,-1]
+        if nums in [10,11]:
+            self.pos=[-4,-1,1]
+        if nums==1:
+            self.pos=[4,1]
+        if nums==9:
+            self.pos=[-4,1]
+        if nums==4:
+            self.pos=[-1,4]
+        if nums==12:
+            self.pos=[-4,-1]
+        if nums in [6,7]:
+            self.pos=[-4,4,-1,1]
+    def operation(self,x):
+        if x==12:
+            return self.pos
+        return Methed(x)
+for x in range(1,13):
+    md= Methed(x)
+    print(md.operation(x))
 
