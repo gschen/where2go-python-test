@@ -126,6 +126,7 @@ gulp.task('build:scss', () => {
 });
 
 // build:css builds all the css files into the dist dir
+// 拷贝所有css文件到build文件夹下面
 gulp.task('build:css', () => {
   const srcs = [
     'app/elements/codelab-elements/*.css',
