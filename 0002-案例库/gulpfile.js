@@ -126,6 +126,7 @@ gulp.task('build:scss', () => {
 });
 
 // build:css builds all the css files into the dist dir
+// 拷贝所有css文件到build文件夹下面
 gulp.task('build:css', () => {
   const srcs = [
     'app/elements/codelab-elements/*.css',
@@ -135,7 +136,7 @@ gulp.task('build:css', () => {
     .pipe(gulp.dest('build'));
 });
 
-// build:html builds all the HTML files
+// build:html builds all the HTML files  构建:html构建所有html文件
 gulp.task('build:html', () => {
   const streams = [];
 
@@ -163,7 +164,7 @@ gulp.task('build:html', () => {
   return merge(...streams);
 });
 
-// build:images builds all the images into the build directory.
+// build:images builds all the images into the build directory.   构建:映像将所有映像构建到构建目录中。
 gulp.task('build:images', () => {
   const srcs = [
     'app/images/**/*',
@@ -336,7 +337,7 @@ gulp.task('watch', gulp.parallel(
   'watch:js',
 ));
 
-// serve builds the website, starts the webserver, and watches for changes.
+// serve builds the website, starts the webserver, and watches for changes.   serve构建网站、启动web服务器并监视更改。
 gulp.task('serve', gulp.series(
   'build',
   gulp.parallel(
@@ -497,11 +498,11 @@ const collectMetadata = () => {
 }
 
 // generateDirectoryIndex accepts a stream of HTML files and converts them to
-// directory indexes for use on a webserver. For example:
+// directory indexes for use on a webserver. For example:                           generateDirectoryIndex接受一个HTML文件流，并将它们转换为目录索引，以便在web服务器上使用。
 //
-//    foo.html => foo/index.html
+//    foo.html => foo/index.html                                                    例如:foo.html = > foo / index . html
 //
-// Then the server can be configured to serve indexes and /foo will render
+// Then the server can be configured to serve indexes and /foo will render          然后服务器可以配置为提供索引和/foo将正确呈现。
 // properly.
 const generateDirectoryIndex = () => {
   return through.obj((file, enc, callback) => {
@@ -530,14 +531,14 @@ const chdir = (dir, callback) => {
   process.chdir(cwd);
 }
 
-// generateView creates an index for the given view and codelabs data.
+// generateView creates an index for the given view and codelabs data.  generateView为给定的视图和代码删除数据创建一个索引。
 const generateView = () => {
   return through.obj((file, enc, callback) => {
-    // viewId is the basename of the dirname of the event (e.g.
+    // viewId is the basename of the dirname of the event (e.g.         viewId是事件名的基本形式
     // app/views/my-event/view.json -> my-event).
     const viewId = path.basename(path.dirname(file.path));
 
-    // Read the HTML template for this view (or the default template if no
+    // Read the HTML template for this view (or the default template if no      读取此视图的HTML模板(如果不存在特定于视图的模板，则为默认模板)
     // view-specific one exists).
     let templatePath = `app/views/${viewId}/index.html`;
     if (!fs.existsSync(templatePath)) {
@@ -545,23 +546,23 @@ const generateView = () => {
     }
     const template = fs.readFileSync(templatePath);
 
-    // Get the metadata about this view.
+    // Get the metadata about this view.                            获取关于此视图的元数据。
     const view = parseViewMetadata(file.path);
 
-    // Aanalytics information.
+    // Aanalytics information.                                      Aanalytics信息。
     const ga = DEFAULT_GA;
 
-    // Full list of views
+    // Full list of views                                           视图的完整列表
     const all = collectMetadata();
 
-    // Calculate URL parameters to append.
+    // Calculate URL parameters to append.                          计算要追加的URL参数。
     let codelabUrlParams = 'index=' + encodeURIComponent('../..' + view.url);
     if (view.ga || args.indexGa) {
       let viewGa = args.indexGa ? args.indexGa : view.ga;
       codelabUrlParams += '&viewga=' + viewGa;
     }
 
-    // Get the list of codelabs and categories for this view
+    // Get the list of codelabs and categories for this view        获取该视图的代码标签和类别列表
     const filtered = filterCodelabs(view, all.codelabs);
     const codelabs = filtered.codelabs;
     const categories = filtered.categories;
