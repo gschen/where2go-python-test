@@ -38,7 +38,7 @@ def sss(n):
                     num+=1
             print(num)
         sum=sum*4*num
-print(sss(n))
+
 
 
 
