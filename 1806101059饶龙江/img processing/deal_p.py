@@ -27,7 +27,7 @@ def cut_p(path,filename,number):
                     for x in range(w):
                         # 将图像灰度化
                         a = image[y][x]
-                        g = 0.59 * a[0] + 0.11 * a[1] + 0.30 * a[2]
+                        g = 0 * a[0] + 1 * a[1] + 0 * a[2]
                         image[y][x] = g  # 灰度化
 
                 img = cv.bilateralFilter(image, 9, 75, 75)# 使用双边滤波去掉点状噪声
