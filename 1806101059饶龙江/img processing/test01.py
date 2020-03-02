@@ -120,6 +120,7 @@ def find_license(img):
 
     # 图像二值化
     binaryimg = dobinaryzation(strtimg)
+
     cv2.imshow('binaryimg', binaryimg)
     cv2.waitKey()
 

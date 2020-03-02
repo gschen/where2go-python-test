@@ -41,7 +41,7 @@ def otsu_img(img):
             u1 += i * img[i]
 
         # u = u0 * w0 + u1 * w1
-        g = w0 * w1 * np.power((u0 - u1), 2)
+        g = w0 * w1 * ((u0 - u1)**2)
 
         if g > max_g:
             max_g = g
