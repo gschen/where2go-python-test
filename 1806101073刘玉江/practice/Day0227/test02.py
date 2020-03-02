@@ -44,6 +44,7 @@ class Solution(object):
             if nums[i] != nums[i - 1]:
                 nums[x] = nums[i]
                 x = x + 1
+        print(nums)
         return x
 if __name__ == '__main__':
 
