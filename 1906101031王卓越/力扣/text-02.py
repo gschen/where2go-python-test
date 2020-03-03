@@ -14,22 +14,22 @@
 # 输入: [1,8,6,2,5,4,8,3,7]
 # 输出: 49
 height=[1,8,6,2,5,4,8,3,7]
-answer=[0]
+answer=0
 x,y=0,-1
 while x+abs(y)!=len(height) and x<len(height) and abs(y)<=len(height)-1:
     s=min(height[x],height[y])*(len(height)-x-abs(y))
-    if s>max(answer):
-        answer.append(s)
+    if s>answer:
+        answer=s
     if height[x]>height[y]:
         y-=1
         continue
     if height[y]>height[x]:
         x+=1
         continue
-    if height[x]==height[y]:
+    if height[x]==height[y]:      
         if x>abs(y)-1:
             y-=1
         if abs(y)>x or abs(y)==x:
             x+=1
-print(answer[-1])
+print(answer)
     

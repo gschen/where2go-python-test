@@ -25,7 +25,7 @@
 # E   O E   I I
 # E C   I H   N
 # T     S     G
-s=input()
+s="LEETCODETSHTRTNG"
 numRows=int(input())
 li=['' for _ in range(numRows)]
 if  numRows<2:
