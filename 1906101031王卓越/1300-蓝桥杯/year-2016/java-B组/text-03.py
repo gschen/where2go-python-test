@@ -42,13 +42,3 @@ for a in range(1,5):
                                                 print('{} {} {} {}'.format(f,g,h,i))
                                                 num+=1
 print(num)
-
-        
-                                                                                                                                                                                                                                                                             
-            
-
-
-
-
-
-
