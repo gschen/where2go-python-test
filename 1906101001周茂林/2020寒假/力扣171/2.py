@@ -31,3 +31,4 @@ def minFlips(a, b, c):
 
 # print(minFlips(2, 6, 5))
 print(minFlips(8, 3, 5))
+

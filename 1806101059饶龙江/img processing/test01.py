@@ -120,6 +120,7 @@ def find_license(img):
 
     # 图像二值化
     binaryimg = dobinaryzation(strtimg)
+
     cv2.imshow('binaryimg', binaryimg)
     cv2.waitKey()
 
@@ -153,7 +154,7 @@ def find_license(img):
 
 
 if __name__ == '__main__':
-    orgimg = cv2.imread('imgs/fire/t00001.jpg')
+    orgimg = cv2.imread('imgs/fire/T0t0.jpg')
     rect, img = find_license(orgimg)
 
     cv2.rectangle(img, (rect[0], rect[1]), (rect[2], rect[3]), (0, 255, 0), 2)

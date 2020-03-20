@@ -1,0 +1,10 @@
+{
+  "title": "CCF CSP认证",
+  "description": "CCF CSP程序设计项目",
+  "logoUrl": "/sctu-csp/logo-ds.svg",
+  "tags": ["sctu-csp"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}

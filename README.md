@@ -23,3 +23,9 @@ https://pintia.cn/problem-sets/1111652100718116864/problems/type/7
 ```shell
 pip install opencv-python
 ```
+
+```
+ctrl + k + p md生成pdf,docx,html
+
+shift + opt + F
+```

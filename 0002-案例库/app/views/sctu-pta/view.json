@@ -1,0 +1,10 @@
+{
+  "title": "PTA",
+  "description": "PTA程序设计项目",
+  "logoUrl": "/sctu-pta/logo-leetcode.svg",
+  "tags": ["sctu-pta"],
+  "exclude": [
+    ".*-about$",
+    "^lang-.*"
+  ]
+}
