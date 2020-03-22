@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="{{url_for('search')}}">
+    <input type="text" name="content" id="content" placeholder="请输入搜索内容">
+    <input type="submit" value="搜索">
+</form>
+<div>
+    <table border="1px" cellspacing="0px">
+        {% for i in quotes %}
+        <tr>
+            <td>名字</td>
+            <td>{{i.name}}</td>
+            <td>内容</td>
+            <td>{{i.content}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
