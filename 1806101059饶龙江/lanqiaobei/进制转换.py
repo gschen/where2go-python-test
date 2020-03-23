@@ -26,7 +26,7 @@ def sixteen_eigen(n):
     #二进制转十进制
     ten=0
     for y in range(len(two_str)):
-        ten=ten+eval(two_str[-(y-1)])*(2**y)
+        ten=ten+eval(two_str[-(y+1)])*(2**y)
     #二进制转八进制
     # if len(two_str)%3==0:
     #     pass
@@ -42,7 +42,7 @@ def sixteen_eigen(n):
     #         eight=eight+str((eval(two_str[j])*4+eval(two_str[j+1])*2+eval(two_str[j+2])*1))
     return ten
 
-print(sixteen_eigen('1E'))
+print(sixteen_eigen('134217727E'))
 
 
 
