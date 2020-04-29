@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <form action="" method="post">
+            添加书籍：<input type="text" name="name" id="name" value="">
+            书籍价格：<input type="text" name="price" id="price" value="">
+            <input type="submit" value="确认添加">
+        </form>
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
+    {% endblock %}
+
+</body>
+</html>

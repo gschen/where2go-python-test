@@ -1,16 +1,19 @@
-from functools import *
-def raw(x,y):
-    return x*y
-def jkl(x,y):
-    return x+y 
-n=list(input())
-s=[]
-for i in n:
-    s.append(int(i))
-    print(s)
-a=reduce(raw,s)
-b=reduce(jkl,s)
-print(a-b)
+n=int(input())
+# print('1')
+res=[1]
+print(res[0])
+l=[]
+for i in range(n-1):
+    for x in range(len(res)):
+        print(res[0])
+        if x-1==0:            
+            l.append(res[x])
+            continue
+        l.append(int(res[x]+res[x-1]))
+        print(l)
+    print(''.join,l)
+    res=l
+
 
 
 

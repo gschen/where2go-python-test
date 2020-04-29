@@ -1,0 +1,13 @@
+{% extends "test01.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <h1>hello</h1>
+  <p class="important">
+    欢迎您
+{% endblock %}

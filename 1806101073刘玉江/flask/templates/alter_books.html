@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+        <form action="" method="post">
+            修改书籍：<input type="text" name="name" id="name" value="" placeholder="{{ one_book.name }}">
+            <input type="submit" value="确认修改">
+        </form>
+    {% endblock content %}
+
+</body>
+</html>

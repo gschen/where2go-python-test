@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block top %}
+    <a href="{{ url_for('index') }}">首页【所有书籍】</a>
+    <a href="{{ url_for('add_book') }}">添加书籍</a>
+{% endblock top %}
+
+{% block content %}
+
+{% endblock content %}
+
+</body>
+</html>

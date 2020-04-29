@@ -28,8 +28,7 @@ for a in range(1,5):
     for b in range(1,5):
         if len(set(list([a,b])))==2:
             for c in range(max(2,a),8):
-                for e
-                 n range(max(2,b),8):
+                for e in range(max(2,b),8):
                     for d in range(max(3,a,b),8):
                         if len(set(list([a,b,c,d,e])))==5:
                             for f in range(max(3,c),10):
@@ -37,9 +36,12 @@ for a in range(1,5):
                                     for g in range(max(d,c,5),10):
                                         for h in range(max(d,e,5),10):
                                             if len(set(list([a,b,c,d,e,f,g,h,i])))==9:
-                                                print('a={}  b={},c={}  d={}  e={},f={}  g={}  h={}  i={}'.format(a,b,c,d,e,f,g,h,i))
+                                                print('   {}   '.format(0))
+                                                print('  {} {}  '.format(a,b))
+                                                print(' {} {} {} '.format(c,d,e))
+                                                print('{} {} {} {}'.format(f,g,h,i))
                                                 num+=1
-print(num)32
+print(num)
 
         
                                                                                                                                                                                                                                                                              

@@ -38,18 +38,11 @@ class Linked_list:
         i = 0
         while i < key:
             pre = temp
-            print('pre:',pre)
-            print(type(pre))
             temp = temp.next
-            print('temp:',i)
             i = i + 1
         node = Node(value)
-
-        print('node:',node)
         pre.next = node
-        print('pre.next:',pre.next)
         node.next = temp
-        print('node.next:',node.next)
 
     def print_list(self):
         print("linked_list:")
@@ -62,13 +55,24 @@ class Linked_list:
 
 
 node = Node
+nums = [ 1, 2, 3, 4,0]
+index = [0, 1, 2, 3, 0]
+res = [nums[0]]
 
-data_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+# data_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 linked_list = Linked_list()
-linked_list.initlist(data_list)
-print('是否为空', linked_list.is_empty())
-print('长度', linked_list.get_length())
-linked_list.insert(2, 100)
+linked_list.initlist(res)
 linked_list.print_list()
-print('是否为空', linked_list.is_empty())
-print('长度', linked_list.get_length())
+# print('是否为空', linked_list.is_empty())
+for i in range(1,len(nums)):
+    linked_list.insert(index[i],nums[i])
+# data_list = linked_list.insert(5,1)
+# print(linked_list.get_length())
+linked_list.print_list()
+# print('长度', linked_list.get_length())
+# linked_list.insert(2, 100)
+# linked_list.print_list()
+# print('是否为空', linked_list.is_empty())
+# print('长度', linked_list.get_length())
